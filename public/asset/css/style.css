@@ -1,0 +1,31 @@
+table.dataTable tr.dtrg-group.dtrg-level-1 th {
+    background-color: rgb(249, 220, 186) !important;
+    padding-top: 10px !important;
+    padding-bottom: 10px !important;
+}
+
+table.dataTable tr.dtrg-group.dtrg-level-2 th {
+    background-color: rgb(249, 230, 230) !important;
+    padding-top: 10px !important;
+    padding-bottom: 10px !important;
+}
+
+table.dataTable tr.dtrg-group.dtrg-level-3 th {
+    background-color: rgb(159, 255, 159) !important;
+    padding-top: 10px !important;
+    padding-bottom: 10px !important;
+}
+
+table.dataTable tr.dtrg-group.dtrg-level-4 th {
+    background-color: rgb(233, 243, 254) !important;
+    padding-top: 10px !important;
+    padding-bottom: 10px !important;
+}
+
+.select2-results__option[aria-selected=true] {
+    display: none;
+}
+
+#subkeltr td {
+    background-color: #f6f9d3
+}

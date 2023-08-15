@@ -1,0 +1,190 @@
+[
+    {
+        "name": "Home",
+        "link": "/",
+        "current": "/",
+        "roles": [
+            "admin",
+            "user"
+        ],
+        "submenu": []
+    },
+    {
+        "name": "Config",
+        "link": "/config",
+        "current": "config/*",
+        "roles": [
+            "admin"
+        ],
+        "submenu": [
+            {
+                "menu_id": 2,
+                "sub_name": "Menus",
+                "sub_link": "/app/menu",
+                "roles": [
+                    "admin"
+                ]
+            },
+            {
+                "menu_id": 2,
+                "sub_name": "Tahun",
+                "sub_link": "/tahun",
+                "roles": [
+                    "admin"
+                ]
+            }
+        ]
+    },
+    {
+        "name": "RKPD",
+        "link": "/rkpd",
+        "current": "rkpd/*",
+        "roles": [
+            "admin",
+            "user"
+        ],
+        "submenu": [
+            {
+                "menu_id": 3,
+                "sub_name": "Ranwal",
+                "sub_link": "/ranwal",
+                "roles": [
+                    "admin",
+                    "user"
+                ]
+            }
+        ]
+    },
+    {
+        "name": "Referensi",
+        "link": "/referensi",
+        "current": "referensi/*",
+        "roles": [
+            "admin"
+        ],
+        "submenu": [
+            {
+                "menu_id": 5,
+                "sub_name": "Nomenklatur",
+                "sub_link": "/nomenklatur/urusan",
+                "roles": [
+                    "admin",
+                    "user"
+                ]
+            },
+            {
+                "menu_id": 5,
+                "sub_name": "Rekening Neraa",
+                "sub_link": "/rekening/neraca",
+                "roles": [
+                    "admin",
+                    "user"
+                ]
+            },
+            {
+                "menu_id": 5,
+                "sub_name": "Rekening LRA",
+                "sub_link": "/rekening/lra",
+                "roles": [
+                    "admin",
+                    "user"
+                ]
+            },
+            {
+                "menu_id": 5,
+                "sub_name": "Rekening LO",
+                "sub_link": "/rekening/lo",
+                "roles": [
+                    "admin",
+                    "user"
+                ]
+            }
+        ]
+    },
+    {
+        "name": "Olah Data",
+        "link": "/olahdata",
+        "current": "/olahdata/*",
+        "roles": [
+            "admin"
+        ],
+        "submenu": [
+            {
+                "menu_id": 6,
+                "sub_name": "Upload Nomenklatur",
+                "sub_link": "/upload/nomenklatur",
+                "roles": [
+                    "admin"
+                ]
+            },
+            {
+                "menu_id": 6,
+                "sub_name": "Sub Kegiatan",
+                "sub_link": "/subkegiatan",
+                "roles": [
+                    "admin"
+                ]
+            }
+        ]
+    },
+    {
+        "name": "RJPMD",
+        "link": "/rpjmd",
+        "current": "rpjmd/*",
+        "roles": [
+            "admin"
+        ],
+        "submenu": [
+            {
+                "menu_id": 7,
+                "sub_name": "Periode",
+                "sub_link": "/periode",
+                "roles": [
+                    "admin"
+                ]
+            }
+        ]
+    },
+    {
+        "name": "Management",
+        "link": "/management",
+        "current": "management/*",
+        "roles": [
+            "admin"
+        ],
+        "submenu": [
+            {
+                "menu_id": 8,
+                "sub_name": "Pejabat Sekda",
+                "sub_link": "/pejabat/sekda",
+                "roles": [
+                    "admin"
+                ]
+            },
+            {
+                "menu_id": 8,
+                "sub_name": "Perangkat Daerah",
+                "sub_link": "/opd",
+                "roles": [
+                    "admin"
+                ]
+            },
+            {
+                "menu_id": 8,
+                "sub_name": "Pendapatan",
+                "sub_link": "/pendapatan",
+                "roles": [
+                    "admin"
+                ]
+            },
+            {
+                "menu_id": 8,
+                "sub_name": "Pagu OPD",
+                "sub_link": "/pagu",
+                "roles": [
+                    "admin"
+                ]
+            }
+        ]
+    }
+]
