@@ -22,21 +22,11 @@ class Pendapatan2KelompokRanwal extends Model
         static::addGlobalScope(new TahunScope);
     }
 
-    /**
-     * Get all of the jenises for the Pendapatan2KelompokRanwal
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     */
     public function jenises(): HasMany
     {
         return $this->hasMany(Pendapatan3JenisRanwal::class, 'kode_kelompok', 'kode_kelompok');
     }
 
-    /**
-     * Get all of the uraians for the Pendapatan2KelompokRanwal
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     */
     public function uraians(): HasMany
     {
         return $this->hasMany(Pendapatan7UraianRanwal::class, 'kode_kelompok', 'kode_kelompok');

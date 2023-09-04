@@ -6,9 +6,10 @@ use App\Models\Opd;
 use App\Models\Scopes\TahunScope;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Rkpd\Rancangan\Rancangan2Bidang;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use App\Models\Rkpd\Rancangan\Rancangan5Subkegiatan;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Awobaz\Compoships\Database\Eloquent\Relations\HasMany;
 
 class Rancangan1Urusan extends Model
 {

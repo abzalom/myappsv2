@@ -6,16 +6,24 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>MyApps</title>
     <link href="/vendors/bootstrap-5.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="/vendors/fontawesome/css/all.css" />
 </head>
 
-<body>
+<body style="background-color: #f7f7f7">
 
     <div class="container">
         <div class="row">
-            <div class="col-4 mx-auto" style="margin-top: 10%">
+            <div class="col-4 mx-auto mb-5" style="margin-top: 5%">
+                @if (session()->has('pesan'))
+                    <div class="alert alert-info">{{ session()->get('pesan') }}</div>
+                @endif
                 <div class="card">
-                    <div class="card-body">
-                        <form action="{{ route('auth.login') }}" method="post">
+                    <div class="card-header">
+                        <h4 class="card-title text-center"><i class="fa-solid fa-user-lock fa-2xl"></i></h4>
+                        <h5 class="card-title text-center">Login Myapps</h5>
+                    </div>
+                    <form action="{{ route('auth.login') }}" method="post">
+                        <div class="card-body">
                             @csrf
                             <div class="row">
                                 <div class="mb-3">
@@ -38,16 +46,20 @@
                                         Remember me
                                     </label>
                                 </div>
-                                <button type="submit" class="btn btn-primary">Login</button>
                             </div>
-                        </form>
-                    </div>
+                        </div>
+                        <div class="card-footer">
+                            <button type="submit" class="btn btn-primary w-100">Login</button>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
     </div>
 
+    <script type="text/javascript" src="/asset/jquery.min.js"></script>
     <script src="/vendors/bootstrap-5.3.0/js/bootstrap.bundle.min.js"></script>
+    <script src="{{ asset('vendors/fontawesome/js/all.js') }}"></script>
 </body>
 
 </html>

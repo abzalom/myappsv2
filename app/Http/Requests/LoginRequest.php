@@ -46,30 +46,41 @@ class LoginRequest extends FormRequest
                 'username' => 'Username dan Password tidak cocok!'
             ]);
         }
+    }
+
+    public function setTahun()
+    {
         $tahun = DB::table('tahuns')->where('active', true)->first();
+        if (!$tahun) {
+            return false;
+        }
         session()->put('tahun', $tahun->tahun);
+        return true;
     }
 
     public function periodeSession()
     {
-        $periode = RpjmdPeriode::find(1);
-        $interval = $periode->akhir - $periode->awal;
-        $data['tahuns'] = [];
-        $data['aktif'] = [];
+        $periode = RpjmdPeriode::where('active', true)->first();
+        // return $periode;
+        if ($periode) {
+            $interval = $periode->akhir - $periode->awal;
+            $data['tahuns'] = [];
+            $data['aktif'] = [];
 
-        for ($i = 0; $i <= (int) $interval; $i++) {
-            $tahun = $periode->awal + $i;
-            array_push(
-                $data['tahuns'],
-                $tahun
-            );
-            if ($tahun == session()->get('tahun')) {
+            for ($i = 0; $i <= (int) $interval; $i++) {
+                $tahun = $periode->awal + $i;
                 array_push(
-                    $data['aktif'],
+                    $data['tahuns'],
                     $tahun
                 );
+                if ($tahun == session()->get('tahun')) {
+                    array_push(
+                        $data['aktif'],
+                        $tahun
+                    );
+                }
             }
+            session()->put('periode', $data);
         }
-        session()->put('periode', $data);
     }
 }

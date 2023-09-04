@@ -6,6 +6,7 @@ use App\Http\Controllers\Referensi\RekeningController;
 use App\Http\Controllers\Referensi\RekeningLoController;
 use App\Http\Controllers\Referensi\RekeningLraController;
 use App\Http\Controllers\Referensi\RekeningNeracaController;
+use App\Http\Controllers\Referensi\SumberdanaController;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,7 +17,7 @@ use App\Http\Controllers\Referensi\RekeningNeracaController;
 
 Route::middleware(['auth'])->group(function () {
 
-    Route::middleware(['auth', 'role:admin|user|guest|eselon-2a|eselon-2b|eselon-3a|eselon-3b|eselon-4a|eselon-4b|eselon-5a'])->group(function () {
+    Route::middleware(['auth', 'role:admin|bappeda|user|guest|eselon-2a|eselon-2b|eselon-3a|eselon-3b|eselon-4a|eselon-4b|eselon-5a'])->group(function () {
         // Route::middleware(['auth', 'role:admin|user|guest|eselon-2a'])->group(function () {
         /**
          * REFERENSI NOMENKLATUR
@@ -54,6 +55,10 @@ Route::middleware(['auth'])->group(function () {
             Route::post('/referensi/rekening/lo/objek', 'objek');
             Route::post('/referensi/rekening/lo/rincian', 'rincian');
             Route::post('/referensi/rekening/lo/subrincian', 'subrincian');
+        });
+
+        Route::controller(SumberdanaController::class)->group(function () {
+            Route::get('/referensi/sumberdana', 'sumberdana')->name('referensi.sumberdana');
         });
     });
 });

@@ -16,6 +16,7 @@
                 <div class="card-body">
                     <h1 class="text-center">403 - FORBIDDEN</h1>
                     <h3 class="text-center">ANDA TIDAK MEMILIKI HAK AKSES!</h3>
+                    <h4 class="text-center">SILAHKAN HUBUNGI ADMIN!</h4>
                     <h5 class="text-center">
                         <a href="{{ url()->previous() }}">Kembali</a>
                     </h5>

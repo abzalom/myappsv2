@@ -2,8 +2,8 @@
 
     <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
         <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="/rkpd/ranwal">OPD</a></li>
-            <li class="breadcrumb-item"><a href="/rkpd/ranwal/opd/{{ $opd->id }}">Renja</a></li>
+            <li class="breadcrumb-item"><a href="/ranwal/rkpd">OPD</a></li>
+            <li class="breadcrumb-item"><a href="/ranwal/rkpd/opd/{{ $opd->id }}">Renja</a></li>
             <li class="breadcrumb-item active" aria-current="page">Edit Sub Kegiatan : {{ $subkegiatan->uraian }}</li>
         </ol>
     </nav>
@@ -15,7 +15,7 @@
                     <span class="card-title">FORM INPUT RENJA {{ $opd->nama_opd }} TAHUN {{ tahun() }}</span>
                 </div>
                 <div class="card-body">
-                    <form action="/rkpd/ranwal/opd/{{ $opd->id }}/subkegiatan/update" method="post">
+                    <form action="/ranwal/rkpd/opd/{{ $opd->id }}/subkegiatan/update" method="post">
                         @csrf
                         <input type="hidden" name="aksi" value="update">
                         <input type="hidden" name="opd" value="{{ $opd->kode_opd }}">
@@ -138,7 +138,7 @@
 
                         <div class="row mt-3">
                             <button type="submit" class="btn btn-primary col-sm-5 mx-auto">Simpan</button>
-                            <a href="/rkpd/ranwal/opd/{{ $opd->id }}" class="btn btn-secondary col-sm-5 mx-auto">Batal</a>
+                            <a href="/ranwal/rkpd/opd/{{ $opd->id }}" class="btn btn-secondary col-sm-5 mx-auto">Batal</a>
                         </div>
                     </form>
                 </div>
@@ -147,5 +147,5 @@
     </div>
 
     @include('sccript')
-    <script src="/asset/js/input_ranwal.js"></script>
+    <script src="/asset/js/ranwal/input_ranwal.js"></script>
 </x-app-layout>

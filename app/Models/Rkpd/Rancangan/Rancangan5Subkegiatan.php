@@ -3,12 +3,14 @@
 namespace App\Models\Rkpd\Rancangan;
 
 use App\Models\Scopes\TahunScope;
-use Illuminate\Database\Eloquent\Casts\Attribute;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use App\Models\Rkpd\Rancangan\Rancangan4Kegiatan;
+use Illuminate\Database\Eloquent\Casts\Attribute;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use App\Models\Rkpd\Rancangan\Rancangan6Subkeluaran;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Rancangan5Subkegiatan extends Model
 {
@@ -22,12 +24,12 @@ class Rancangan5Subkegiatan extends Model
         static::addGlobalScope(new TahunScope);
     }
 
-    protected function jenis(): Attribute
-    {
-        return Attribute::make(
-            get: fn (string $value) => strtoupper($value),
-        );
-    }
+    // protected function jenis(): Attribute
+    // {
+    //     return Attribute::make(
+    //         get: fn (string $value) => strtoupper($value),
+    //     );
+    // }
 
     /**
      * Get all of the subkeluarans for the Ranwal5Subkegiatan

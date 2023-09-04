@@ -4,7 +4,7 @@
         <div class="col">
             <div class="card">
                 <div class="card-header">
-                    <span class="card-title">Restra Perangkat Daerah Periode RPJMD {{ $rpjmd->awal . ' - ' . $rpjmd->akhir }}</span>
+                    <span class="card-title">Restra Perangkat Daerah Periode RPJMD {{ $rpjmd ? $rpjmd->awal . ' - ' . $rpjmd->akhir : '' }}</span>
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">
@@ -12,17 +12,26 @@
                             <thead class="table-info align-middle">
                                 <tr>
                                     <th rowspan="2">Perangkat Daerah</th>
-                                    @foreach (session()->get('periode')['tahuns'] as $tahun)
-                                        @if ($rpjmd->awal == $tahun)
-                                            <th class="text-center" rowspan="2">Kondisi Awal Tahun {{ $tahun }}</th>
-                                        @else
-                                            @if (session()->get('tahun') == $tahun)
-                                                <th class="text-center" colspan="2">Tahun {{ $tahun }} <small class="text-muted">(aktif)</small></th>
+                                    @if ($rpjmd)
+                                        @foreach (session()->get('periode')['tahuns'] as $tahun)
+                                            @if ($rpjmd->awal == $tahun)
+                                                <th class="text-center" rowspan="2">Kondisi Awal Tahun {{ $tahun }}</th>
                                             @else
-                                                <th class="text-center" colspan="2">Tahun {{ $tahun }}</th>
+                                                @if (session()->get('tahun') == $tahun)
+                                                    <th class="text-center" colspan="2">Tahun {{ $tahun }} <small class="text-muted">(aktif)</small></th>
+                                                @else
+                                                    <th class="text-center" colspan="2">Tahun {{ $tahun }}</th>
+                                                @endif
                                             @endif
-                                        @endif
-                                    @endforeach
+                                        @endforeach
+                                    @else
+                                        <th class="text-center" rowspan="2">Kondisi Awal Tahun</th>
+                                        <th class="text-center" colspan="2">Tahun ke 1</th>
+                                        <th class="text-center" colspan="2">Tahun ke 2</th>
+                                        <th class="text-center" colspan="2">Tahun ke 3</th>
+                                        <th class="text-center" colspan="2">Tahun ke 4</th>
+                                        <th class="text-center" colspan="2">Tahun ke 5</th>
+                                    @endif
                                 </tr>
                                 <tr class="text-center">
                                     <th>Program</th>

@@ -13,8 +13,9 @@ return new class extends Migration
     {
         Schema::create('rancangan2_bidangs', function (Blueprint $table) {
             $table->id();
-            $table->string('kode_akun');
-            $table->string('kode_kelompok');
+            $table->string('kode_opd');
+            $table->string('kode_urusan');
+            $table->string('kode_bidang');
             $table->text('uraian');
             $table->year('tahun');
             $table->softDeletes();

@@ -16,7 +16,7 @@ use App\Http\Controllers\Opd\OpdStoreController;
 
 
 Route::middleware(['auth'])->group(function () {
-    Route::middleware(['role:admin'])->group(function () {
+    Route::middleware(['role:admin|bappeda'])->group(function () {
         Route::controller(PegawaiController::class)->group(function () {
             /**
              * Pegawai ASN
@@ -62,6 +62,7 @@ Route::middleware(['auth'])->group(function () {
             Route::post('/management/opd/edit/{kode}', 'update');
             Route::post('/management/opd/destroy', 'destroy')->name('opd.destroy');
             Route::post('/management/opd/restore', 'restore')->name('opd.restore');
+            Route::get('/management/opd/upload', 'uplodaopd')->name('uplodaopd');
         });
     });
 });

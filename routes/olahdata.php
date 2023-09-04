@@ -14,6 +14,5 @@ use Illuminate\Support\Facades\Route;
 
 
 Route::middleware('auth')->group(function () {
-    // Route::get('/olahdata/looping/tahun', [TestController::class, 'test']);
-    Route::get('/olahdata/ranwal/delete', [TestController::class, 'deleteRanwal']);
+    Route::get('/test', [TestController::class, 'test']);
 });

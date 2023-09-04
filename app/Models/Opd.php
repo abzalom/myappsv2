@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Models\Rkpd\Rancangan\Rancangan1Urusan;
+use App\Models\Rkpd\Rancangan\Rancangan6Subkeluaran;
 use App\Models\Rkpd\Ranwal\Ranwal1Urusan;
 use App\Models\Rkpd\Ranwal\Ranwal5Subkegiatan;
 use App\Models\Rkpd\Ranwal\Ranwal6Subkeluaran;
@@ -39,71 +40,46 @@ class Opd extends Model
         // return $this->title = ucwords($this->nama_opd);
     }
 
-    /**
-     * Get all of the tags for the Opd
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     */
     public function tags(): HasMany
     {
         return $this->hasMany(OpdTag::class, 'kode_opd', 'kode_opd');
     }
 
-    /**
-     * Get all of the pagus for the Opd
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     */
-    public function pagus(): HasMany
+    public function paguranwals(): HasMany
     {
         return $this->hasMany(PaguRanwalOpd::class, 'kode_opd', 'kode_opd');
     }
 
-    /**
-     * Get all of the urusans for the Opd
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     */
+    public function pagurancangans(): HasMany
+    {
+        return $this->hasMany(PaguRancanganOpd::class, 'kode_opd', 'kode_opd');
+    }
+
     public function ranwalurusans(): HasMany
     {
         return $this->hasMany(Ranwal1Urusan::class, 'kode_opd', 'kode_opd');
     }
 
-    /**
-     * Get all of the urusans for the Opd
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     */
     public function rancanganurusans(): HasMany
     {
         return $this->hasMany(Rancangan1Urusan::class, 'kode_opd', 'kode_opd');
     }
 
-    /**
-     * Get all of the ranwalsubkegiatans for the Opd
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     */
     public function ranwalsubkegiatans(): HasMany
     {
         return $this->hasMany(Ranwal5Subkegiatan::class, 'kode_opd', 'kode_opd');
     }
 
-    /**
-     * Get all of the subkeluarans for the Opd
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     */
     public function ranwalsubkeluarans(): HasMany
     {
         return $this->hasMany(Ranwal6Subkeluaran::class, 'kode_opd', 'kode_opd');
     }
 
-    /**
-     * Get the opdpeg that owns the Opd
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-     */
+    public function rancangansubkeluarans(): HasMany
+    {
+        return $this->hasMany(Rancangan6Subkeluaran::class, 'kode_opd', 'kode_opd');
+    }
+
     public function opdpeg(): BelongsTo
     {
         return $this->belongsTo(OpdPegawai::class, 'kode_opd', 'kode_opd');

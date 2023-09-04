@@ -116,4 +116,9 @@ class OpdStoreController extends Controller
         $opd->restore();
         return redirect()->to(route('opd'))->with('pesan', 'Perangkat daerah ' . $nama_opd . ' berhasil diaktifkan kembali');
     }
+
+    public function uplodaopd(Request $request)
+    {
+        return $request->all();
+    }
 }

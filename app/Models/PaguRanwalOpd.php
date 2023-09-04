@@ -26,34 +26,28 @@ class PaguRanwalOpd extends Model
         static::addGlobalScope(new TahunScope);
     }
 
-    /**
-     * Get the opd that owns the PaguRanwalOpd
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-     */
     public function opd(): BelongsTo
     {
         return $this->belongsTo(Opd::class, 'kode_opd', 'kode_opd');
     }
 
-    /**
-     * Get the uraianpendapatan that owns the PaguRanwalOpd
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-     */
     public function uraianpendapatan(): BelongsTo
     {
         return $this->belongsTo(Pendapatan7UraianRanwal::class, 'kode_uraian', 'kode_uraian');
     }
 
-
-    /**
-     * Get all of the subkeluarans for the PaguRanwalOpd
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     */
     public function subkeluarans(): HasMany
     {
-        return $this->hasMany(Ranwal6Subkeluaran::class, 'sumberdana', 'kode_uraian');
+        return $this->hasMany(Ranwal6Subkeluaran::class, 'sumberdana', 'kode_unik_sumberdana');
+    }
+
+    public function sumberdanas(): HasMany
+    {
+        return $this->hasMany(SumberdanaRanwal::class, 'id', 'sumberdana_ranwal_id');
+    }
+
+    public function sumberdana(): BelongsTo
+    {
+        return $this->belongsTo(SumberdanaRanwal::class, 'kode_sumberdana', 'kode_sumberdana');
     }
 }

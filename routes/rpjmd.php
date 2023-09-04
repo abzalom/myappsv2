@@ -19,7 +19,7 @@ use App\Http\Controllers\Rpjmd\Store\RpjmdIndikatorStoreController;
 
 
 Route::middleware(['auth'])->group(function () {
-    Route::middleware(['role:admin'])->group(function () {
+    Route::middleware(['role:admin|bappeda'])->group(function () {
 
 
         /**

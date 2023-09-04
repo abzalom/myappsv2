@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Models\Anggaran\Rancangan\Pendapatan7UraianRancangan;
 use App\Models\Anggaran\Ranwal\Pendapatan6SubrincianRanwal;
 use App\Models\Anggaran\Ranwal\Pendapatan7UraianRanwal;
 use App\Models\B1AkunNeraca;
@@ -22,7 +23,12 @@ class RekeningApiController extends Controller
 
     public function byidUraian(Request $request)
     {
-        return Pendapatan7UraianRanwal::with('subrincian')->find($request->id);
+        if ($request->tahapan == 'ranwal') {
+            return Pendapatan7UraianRanwal::with('subrincian')->find($request->id);
+        }
+        if ($request->tahapan == 'rancangan') {
+            return Pendapatan7UraianRancangan::with('subrincian')->find($request->id);
+        }
     }
 
     public function searchUraian(Request $request)

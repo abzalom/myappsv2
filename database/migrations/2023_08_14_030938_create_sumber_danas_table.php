@@ -15,7 +15,8 @@ return new class extends Migration
             $table->id();
             $table->string('kode');
             $table->string('uraian');
-            $table->enum('input', ['ya', 'tidak']);
+            $table->boolean('input');
+            $table->softDeletes();
             $table->timestamps();
         });
     }

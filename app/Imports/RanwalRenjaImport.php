@@ -31,7 +31,7 @@ class RanwalRenjaImport implements ToModel, WithHeadingRow
     public function model(array $row)
     {
         // if (!array_key_exists('capaian', $row)) {
-        //     dump($row);
+        //     dd($row);
         // }
         $datasub = A5Subkegiatan::where('kode_subkegiatan', $row['kode_subkegiatan'])->first();
         if ($datasub) {
@@ -71,9 +71,9 @@ class RanwalRenjaImport implements ToModel, WithHeadingRow
             ];
             $create_kegiatan = [
                 'uraian' => $datasub->kegiatan->uraian,
-                'capaian' => $row['capaian'],
-                'target_capaian' => str($row['target_capaian'])->replace(',', '.'),
-                'satuan_capaian' => $row['satuan_capaian'],
+                // 'capaian' => $row['capaian'],
+                // 'target_capaian' => str($row['target_capaian'])->replace(',', '.'),
+                // 'satuan_capaian' => $row['satuan_capaian'],
             ];
 
             $subkegiatan = [
@@ -107,7 +107,7 @@ class RanwalRenjaImport implements ToModel, WithHeadingRow
             $subkeg = Ranwal5Subkegiatan::firstOrCreate($subkegiatan, $create_subkegiatan);
             DB::commit();
 
-            if ($row['subkeluaran'] !== null) {
+            if ($row['kode_subkeluaran'] !== null) {
                 $input_subkel = Ranwal6Subkeluaran::firstOrCreate(
                     [
                         'kode_opd' => $subkeg->kode_opd,
@@ -116,15 +116,15 @@ class RanwalRenjaImport implements ToModel, WithHeadingRow
                         'kode_program' => $subkeg->kode_program,
                         'kode_kegiatan' => $subkeg->kode_kegiatan,
                         'kode_subkegiatan' => $subkeg->kode_subkegiatan,
-                        'kode_subkeluaran' => $subkeg->kode_subkegiatan . '.' . $row['nomor_subkeluaran'],
+                        'kode_subkeluaran' => $row['kode_subkeluaran'],
                     ],
                     [
-                        'uraian' => $row['subkeluaran'],
-                        'target' => str($row['target_subkeluaran'])->replace(',', '.'),
-                        'satuan' => $subkeg->satuan,
+                        'uraian' => $row['uraian'],
+                        'target' => str($row['target'])->replace(',', '.'),
+                        'satuan' => $row['satuan'],
                         'anggaran' => str($row['anggaran'])->replace(',', '.'),
                         'anggaran_maju' => str($row['anggaran_maju'])->replace(',', '.'),
-                        'sumberdana' => $row['kode_sumberdana'],
+                        'sumberdana' => $row['sumberdana'],
                         'lokasi' => $row['lokasi'],
                         'tahun' => tahun(),
                     ]

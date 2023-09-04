@@ -3,8 +3,9 @@
 namespace App\Http\Controllers\Configs\Jadwal;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Rkpd\JadwalRkpdRequest;
+use App\Http\Requests\SynchornRkpdRequest;
 use App\Models\Rkpd\Ranwal\Ranwal1Urusan;
+use App\Models\SumberdanaRanwal;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Validation\Rule;
@@ -70,16 +71,14 @@ class JadwalStoreController extends Controller
         return redirect()->to('/config/jadwal')->with('pesan', 'Jadwal pelaksanaan RKPD tahapan dikunci!');
     }
 
-    public function synchorn(Request $request)
+    public function synchorn(SynchornRkpdRequest $request)
     {
         if ($request->tahapan == 'rancangan') {
-            return Ranwal1Urusan::with([
-                'bidangs',
-                'bidangs.programs',
-                'bidangs.programs.kegiatans',
-                'bidangs.programs.kegiatans.subkegiatans',
-                'bidangs.programs.kegiatans.subkegiatans.subkeluarans',
-            ])->get();
+            $pendapatan = $request->synchornPendapatanRanwalKeRancangan();
+            $sumberdana = $request->synchornSumberdanaranwalKeRancangan();
+            $paguopd = $request->synchornPaguRanwalKeRancangan();
+            $rkpd = $request->synchornRkpdRanwalKeRancangan();
+            return redirect()->to('/config/jadwal')->with('pesan', 'Tahapan rancangan berhasil disinkron!');
         }
     }
 }

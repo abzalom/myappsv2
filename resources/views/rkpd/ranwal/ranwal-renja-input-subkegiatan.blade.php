@@ -2,8 +2,8 @@
 
     <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
         <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="/rkpd/ranwal">OPD</a></li>
-            <li class="breadcrumb-item"><a href="/rkpd/ranwal/opd/{{ $opd->id }}">Renja</a></li>
+            <li class="breadcrumb-item"><a href="/ranwal/rkpd">OPD</a></li>
+            <li class="breadcrumb-item"><a href="/ranwal/rkpd/opd/{{ $opd->id }}">Renja</a></li>
             <li class="breadcrumb-item active" aria-current="page">Input Sub Kegiatan</li>
         </ol>
     </nav>
@@ -205,7 +205,7 @@
 
                         <div class="row mt-3">
                             <button type="submit" class="btn btn-primary col-sm-5 mx-auto">Simpan</button>
-                            <a href="/rkpd/ranwal/opd/{{ $opd->id }}" class="btn btn-secondary col-sm-5 mx-auto">Batal</a>
+                            <a href="/ranwal/rkpd/opd/{{ $opd->id }}" class="btn btn-secondary col-sm-5 mx-auto">Batal</a>
                         </div>
                     </form>
                 </div>
@@ -214,5 +214,5 @@
     </div>
 
     @include('sccript')
-    <script src="/asset/js/input_ranwal.js"></script>
+    <script src="/asset/js/ranwal/input_ranwal.js"></script>
 </x-app-layout>

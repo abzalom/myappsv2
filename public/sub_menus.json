@@ -1,0 +1,121 @@
+[
+  {
+    "menu_id": "2",
+    "sub_name": "Menus",
+    "sub_link": "/app/menu",
+    "roles": "admin,",
+    "nomor": 1
+  },
+  {
+    "menu_id": "2",
+    "sub_name": "Tahun",
+    "sub_link": "/tahun",
+    "roles": "admin,",
+    "nomor": 2
+  },
+  {
+    "menu_id": "3",
+    "sub_name": "Ranwal",
+    "sub_link": "/ranwal",
+    "roles": "admin,user,eselon-2a,eselon-3a,eselon-4a,staf,eselon-2b,eselon-3b,eselon-4b,eselon-5a,",
+    "nomor": 1
+  },
+  {
+    "menu_id": "5",
+    "sub_name": "Nomenklatur",
+    "sub_link": "/nomenklatur/urusan",
+    "roles": "admin,user,eselon-2a,eselon-3a,eselon-4a,staf,guest,eselon-2b,eselon-3b,eselon-4b,eselon-5a,",
+    "nomor": 1
+  },
+  {
+    "menu_id": "6",
+    "sub_name": "Upload Nomenklatur",
+    "sub_link": "/upload/nomenklatur",
+    "roles": "admin,",
+    "nomor": null
+  },
+  {
+    "menu_id": "7",
+    "sub_name": "Periode",
+    "sub_link": "/periode",
+    "roles": "admin,",
+    "nomor": 1
+  },
+  {
+    "menu_id": "8",
+    "sub_name": "Pejabat Sekda",
+    "sub_link": "/pejabat/sekda",
+    "roles": "admin,",
+    "nomor": 2
+  },
+  {
+    "menu_id": "8",
+    "sub_name": "Perangkat Daerah",
+    "sub_link": "/opd",
+    "roles": "admin,",
+    "nomor": 3
+  },
+  {
+    "menu_id": "6",
+    "sub_name": "Sub Kegiatan",
+    "sub_link": "/subkegiatan",
+    "roles": "admin,",
+    "nomor": null
+  },
+  {
+    "menu_id": "5",
+    "sub_name": "Rekening Neraa",
+    "sub_link": "/rekening/neraca",
+    "roles": "admin,user,eselon-2a,eselon-3a,eselon-4a,staf,guest,eselon-2b,eselon-3b,eselon-4b,eselon-5a,",
+    "nomor": 2
+  },
+  {
+    "menu_id": "5",
+    "sub_name": "Rekening LRA",
+    "sub_link": "/rekening/lra",
+    "roles": "admin,user,eselon-2a,eselon-3a,eselon-4a,staf,guest,eselon-2b,eselon-3b,eselon-4b,eselon-5a,",
+    "nomor": 3
+  },
+  {
+    "menu_id": "5",
+    "sub_name": "Rekening LO",
+    "sub_link": "/rekening/lo",
+    "roles": "admin,user,eselon-2a,eselon-3a,eselon-4a,staf,guest,eselon-2b,eselon-3b,eselon-4b,eselon-5a,",
+    "nomor": 4
+  },
+  {
+    "menu_id": "8",
+    "sub_name": "Pendapatan Ranwal",
+    "sub_link": "/pendapatan/ranwal",
+    "roles": "admin,",
+    "nomor": 4
+  },
+  {
+    "menu_id": "8",
+    "sub_name": "Pagu OPD",
+    "sub_link": "/pagu",
+    "roles": "admin,",
+    "nomor": 5
+  },
+  {
+    "menu_id": "8",
+    "sub_name": "Pegawai",
+    "sub_link": "/pegawai/asn",
+    "roles": "admin,",
+    "nomor": 1
+  },
+  {
+    "menu_id": "2",
+    "sub_name": "Jadwal",
+    "sub_link": "/jadwal",
+    "roles": "admin,bappeda,",
+    "nomor": 19
+  },
+  {
+    "menu_id": "3",
+    "sub_name": "Rancangan",
+    "sub_link": "/rancangan",
+    "roles": "admin,user,eselon-2a,eselon-3a,eselon-4a,staf,eselon-2b,eselon-3b,eselon-4b,eselon-5a,bappeda,",
+    "nomor": 20
+  }
+]

@@ -41,6 +41,7 @@ class AppController extends Controller
 
     public function tahun()
     {
+        // return session()->all();
         $tahuns = DB::table('tahuns')->orderBy('tahun')->get();
         return view('config.config-tahun', [
             'apps' => [

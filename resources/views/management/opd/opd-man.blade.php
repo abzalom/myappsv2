@@ -7,7 +7,18 @@
                     <span class="card-title">Perangkat Daerah Tahun {{ tahun() }}</span>
                 </div>
                 <div class="card-body">
-                    <a href="{{ route('opd.create') }}" class="btn btn-outline-primary mb-3">Input OPD</a>
+                    <div class="row mb-3">
+                        <div class="col-2">
+                            <a href="{{ route('opd.create') }}" class="btn btn-outline-primary">Input OPD</a>
+                        </div>
+                        <div class="col-2">
+                            <form action="/management/opd/upload" method="post" id="formUploadFileOpd">
+                                @csrf
+                                <input type="file" name="file" id="fileOpd" onchange="return getElementById('formUploadFileOpd').submit()" hidden>
+                                <button type="button" class="btn btn-secondary" onclick="return getElementById('fileOpd').click()"><i class="fa-solid fa-folder"></i> Upload</button>
+                            </form>
+                        </div>
+                    </div>
                     <table class="table table-bordered table-hover table-striped">
                         <thead class="table-dark">
                             <tr>

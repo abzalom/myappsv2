@@ -14,7 +14,7 @@
         <div class="row">
             <div class="card col-lg-6 mx-auto" style="margin-top: 10%">
                 <div class="card-body">
-                    <h1 class="text-center">403 - NOT FOUND</h1>
+                    <h1 class="text-center">404 - NOT FOUND</h1>
                     <h3 class="text-center">HALAMAN YANG ANDA MINTA TIDAK DITEMUKAN!</h3>
                     <h5 class="text-center">
                         <a href="{{ url()->previous() }}">Kembali</a>

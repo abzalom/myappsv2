@@ -22,21 +22,11 @@ class Pendapatan4ObjekRanwal extends Model
         static::addGlobalScope(new TahunScope);
     }
 
-    /**
-     * Get all of the rincians for the Pendapatan4ObjekRanwal
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     */
     public function rincians(): HasMany
     {
         return $this->hasMany(Pendapatan5RincianRanwal::class, 'kode_objek', 'kode_objek');
     }
 
-    /**
-     * Get all of the uraians for the Pendapatan4ObjekRanwal
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     */
     public function uraians(): HasMany
     {
         return $this->hasMany(Pendapatan7UraianRanwal::class, 'kode_objek', 'kode_objek');

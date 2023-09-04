@@ -36,21 +36,11 @@ class Pendapatan7UraianRanwal extends Model
         ];
     }
 
-    /**
-     * Get all of the pagus for the Pendapatan7UraianRanwal
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     */
     public function pagus(): HasMany
     {
-        return $this->hasMany(PaguRanwalOpd::class, 'kode_uraian', 'kode_uraian');
+        return $this->hasMany(PaguRanwalOpd::class, 'kode_sumberdana', 'kode_sumberdana');
     }
 
-    /**
-     * Get the subrincian that owns the Pendapatan7UraianRanwal
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-     */
     public function subrincian(): BelongsTo
     {
         return $this->belongsTo(Pendapatan6SubrincianRanwal::class, 'kode_subrincian', 'kode_subrincian');

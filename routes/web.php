@@ -4,19 +4,9 @@ use App\Http\Controllers\Configs\AppController;
 use App\Http\Controllers\Configs\AppStoreController;
 use App\Http\Controllers\Configs\Jadwal\JadwalController;
 use App\Http\Controllers\Configs\Jadwal\JadwalStoreController;
-use App\Http\Controllers\Management\PejabatSekdaController;
-use App\Http\Controllers\Opd\OpdController;
-use App\Http\Controllers\Opd\OpdStoreController;
-use App\Http\Controllers\Rpjmd\RpjmdController;
-use App\Http\Controllers\Rpjmd\Store\RpjmdIndikatorStoreController;
-use App\Http\Controllers\Rpjmd\Store\RpjmdMisiStoreController;
-use App\Http\Controllers\Rpjmd\Store\RpjmdPeriodeStoreController;
-use App\Http\Controllers\Rpjmd\Store\RpjmdProgramStoreController;
-use App\Http\Controllers\Rpjmd\Store\RpjmdSasaranStoreController;
-use App\Http\Controllers\Rpjmd\Store\RpjmdTujuanStoreController;
-use App\Http\Controllers\Rpjmd\Store\RpjmdVisiStoreController;
 use App\Http\Controllers\Settings\RoleAndPermissionController;
 use App\Http\Controllers\Settings\RoleAndPermissionStoreController;
+use App\Http\Controllers\TemplateBuildController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -30,6 +20,19 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::middleware(['auth'])->group(function () {
+    Route::middleware(['role:admin'])->group(function () {
+        Route::controller(TemplateBuildController::class)->group(function () {
+            Route::get('/template', 'buildTemplate');
+            Route::get('/request', 'testRequest');
+        });
+    });
+});
+
+Route::get('/home', function () {
+    return redirect()->to('/');
+});
+
 Route::get('/', function () {
     return view('home', [
         'apps' => [
@@ -40,7 +43,7 @@ Route::get('/', function () {
 })->name('home')->middleware(['auth']);
 
 Route::middleware(['auth'])->group(function () {
-    Route::middleware(['role:admin'])->group(function () {
+    Route::middleware(['role:admin|bappeda'])->group(function () {
         /**
          * App Configurations
          */
@@ -79,7 +82,7 @@ Route::middleware(['auth'])->group(function () {
          * Settings Role And Permission
          */
         Route::controller(RoleAndPermissionController::class)->group(function () {
-            Route::get('/setting/roles', 'roleandpermission');
+            Route::get('/user/setting/roles', 'roleandpermission');
         });
         Route::controller(RoleAndPermissionStoreController::class)->group(function () {
             Route::post('/setting/roles/save', 'rolesave');
@@ -96,4 +99,6 @@ require __DIR__ . '/renstra.php';
 require __DIR__ . '/referensi.php';
 require __DIR__ . '/management.php';
 require __DIR__ . '/ranwal.php';
+require __DIR__ . '/rancangan.php';
+require __DIR__ . '/perubahan.php';
 require __DIR__ . '/olahdata.php';

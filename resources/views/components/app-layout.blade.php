@@ -10,11 +10,11 @@
     <!-- Styles -->
     <link rel="stylesheet" href="/vendors/select2/dist/css/select2.min.css" />
     {{-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.css"> --}}
-    <link rel="stylesheet" href="/vendors/select2-bootstrap5/select2-bootstrap-5-theme.min.css" />
-    <link rel="stylesheet" href="/vendors/datatables/datatables.min.css">
-    <link rel="stylesheet" href="/vendors/datatables/RowGroup-1.2.0/css/rowGroup.bootstrap.css">
-    <link rel="stylesheet" href="/vendors/fontawesome/css/all.css" />
-    <link rel="stylesheet" href="/asset/css/style.css">
+    <link rel="stylesheet" type="text/css" href="/vendors/select2-bootstrap5/select2-bootstrap-5-theme.min.css" />
+    <link rel="stylesheet" type="text/css" href="/vendors/datatables/datatables.min.css">
+    <link rel="stylesheet" type="text/css" href="/vendors/datatables/RowGroup-1.2.0/css/rowGroup.bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="/vendors/fontawesome/css/all.css" />
+    <link rel="stylesheet" type="text/css" href="/asset/css/style.css">
     <script type="text/javascript" src="/asset/jquery.min.js"></script>
     <script type="text/javascript">
         $.ajaxSetup({

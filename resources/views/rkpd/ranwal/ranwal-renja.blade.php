@@ -16,7 +16,7 @@
 
     <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
         <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="/rkpd/ranwal">OPD</a></li>
+            <li class="breadcrumb-item"><a href="/ranwal/rkpd">OPD</a></li>
             <li class="breadcrumb-item active" aria-current="page">Renja</li>
         </ol>
     </nav>
@@ -29,10 +29,10 @@
                 </div>
                 <div class="card-body">
                     <h5>{{ $opd->kode_opd . ' - ' . $opd->nama_opd }}</h5>
-                    <table class="table table-sm table-bordered" style="width: 70%; font-size: 90%">
+                    <table class="table table-sm table-bordered" style="width: 75%; font-size: 90%">
                         <thead>
                             <tr class="align-middle">
-                                <th>Kode</th>
+                                <th style="width: 18%">Kode</th>
                                 <th>Sumber Dana</th>
                                 <th class="text-center">Batasan Pagu</th>
                                 <th class="text-center">Inputan Renja</th>
@@ -40,20 +40,20 @@
                             </tr>
                         </thead>
                         <tbody class="align-middle">
-                            @foreach ($opd->pagus as $pagu)
+                            @foreach ($infopagus as $pagu)
                                 <tr>
-                                    <td class="text-center">{{ $pagu->kode_uraian }}</td>
-                                    <td>{{ $pagu->uraianpendapatan->uraian }}</td>
+                                    <td class="text-start">{{ $pagu->kode_unik_sumberdana }}</td>
+                                    <td>{{ $pagu->sumberdana->uraian }}</td>
                                     <td class="text-end">{{ number_format($pagu->jumlah, 2, ',', '.') }}</td>
                                     <td class="text-end">{{ number_format($pagu->subkeluarans_sum_anggaran, 2, ',', '.') }}</td>
                                     <td class="text-end">{{ number_format($pagu->jumlah - $pagu->subkeluarans_sum_anggaran, 2, ',', '.') }}</td>
                                 </tr>
                             @endforeach
                             <tr>
-                                <th class="text-end" colspan="2">Total</th>
-                                <th class="text-end">{{ number_format($opd->pagus_sum_jumlah, 2, ',', '.') }}</th>
+                                <th class="text-end" colspan="2">Total Alokasi Pagu</th>
+                                <th class="text-end">{{ number_format($opd->paguranwals_sum_jumlah, 2, ',', '.') }}</th>
                                 <th class="text-end">{{ number_format($opd->ranwalsubkeluarans_sum_anggaran, 2, ',', '.') }}</th>
-                                <th class="text-end">{{ number_format($opd->pagus_sum_jumlah - $opd->ranwalsubkeluarans_sum_anggaran, 2, ',', '.') }}</th>
+                                <th class="text-end">{{ number_format($opd->paguranwals_sum_jumlah - $opd->ranwalsubkeluarans_sum_anggaran, 2, ',', '.') }}</th>
                             </tr>
                         </tbody>
                     </table>
@@ -64,11 +64,11 @@
                         <div class="row mb-4">
                             <div class="col-2">
                                 @can('input renja')
-                                    <a href="/rkpd/ranwal/opd/{{ $opd->id }}/subkegiatan" class="btn btn-primary"><i class="fa-solid fa-plus-square fa-lg"></i> Sub Kegiatan</a>
+                                    <a href="/ranwal/rkpd/opd/{{ $opd->id }}/subkegiatan" class="btn btn-primary"><i class="fa-solid fa-plus-square fa-lg"></i> Sub Kegiatan</a>
                                 @endcan
                             </div>
                             <div class="col-3">
-                                <form action="/rkpd/ranwal/upload" id="formUploadRenja" method="post" enctype="multipart/form-data">
+                                <form action="/ranwal/rkpd/renja/opd/upload" id="formUploadRenja" method="post" enctype="multipart/form-data">
                                     @csrf
                                     <input type="file" name="file" id="fileRenja" onchange="document.getElementById('formUploadRenja').submit()" hidden>
                                     <input type="hidden" name="idopd" value="{{ $opd->id }}">
@@ -80,9 +80,9 @@
                                 <button class="btn btn-secondary text-white" data-bs-toggle="modal" data-bs-target="#arsipSubkeluaranRanwalRenjaModal"><i class="fa-regular fa-folder-open"></i> Arsip Sub Keluaran</button>
                             </div>
                         </div>
-                        @include('rkpd.ranwal.includes.include-table-renja')
+                        @include('rkpd.ranwal.includes.ranwal-include-table-renja')
                     @else
-                        @include('rkpd.ranwal.includes.inlcude-table-renja-lock')
+                        @include('rkpd.ranwal.includes.ranwal-inlcude-table-renja-lock')
                     @endif
                 </div>
             </div>
@@ -90,7 +90,7 @@
     </div>
 
     {{-- <script src="/asset/js/input_ranwal.js"></script> --}}
-    @include('rkpd.ranwal.modal.modal-arsip-ranwal-renja-subkegiatan')
-    @include('rkpd.ranwal.modal.modal-arsip-ranwal-renja-subkeluaran')
+    @include('rkpd.ranwal.modal.ranwal-modal-arsip-renja-subkegiatan')
+    @include('rkpd.ranwal.modal.ranwal-modal-arsip-renja-subkeluaran')
     @include('sccript')
 </x-app-layout>

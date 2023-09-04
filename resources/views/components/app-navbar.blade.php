@@ -36,14 +36,14 @@
                     @endforeach
 
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <a class="nav-link dropdown-toggle {{ request()->is('user/*') ? 'active' : '' }}" aria-current="page" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                             {{ auth()->user()->username }}
                         </a>
                         <ul class="dropdown-menu">
                             <li><a class="dropdown-item" href="{{ route('user.profile') }}">Profile</a></li>
                             @if (auth()->user()->hasRole(['admin']))
-                                <li><a class="dropdown-item" href="/setting/roles">Roles & Permissions</a></li>
-                                <li><a class="dropdown-item" href="/setting/users">Users</a></li>
+                                <li><a class="dropdown-item" href="/user/setting/roles">Roles & Permissions</a></li>
+                                <li><a class="dropdown-item" href="/user/setting/users">Users</a></li>
                             @endif
                             <li>
                                 <hr class="dropdown-divider">
@@ -57,6 +57,10 @@
                         </ul>
                     </li>
                 </ul>
+                {{-- <div class="form-check form-switch">
+                    <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckChecked" checked>
+                    <label class="form-check-label" for="flexSwitchCheckChecked">Mode gelap</label>
+                </div> --}}
                 {{-- <form class="d-flex" role="search">
                     <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
                     <button class="btn btn-outline-success" type="submit">Search</button>

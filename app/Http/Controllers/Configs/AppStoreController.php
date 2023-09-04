@@ -59,22 +59,21 @@ class AppStoreController extends Controller
 
     function menuupdate(Request $request)
     {
+        // return $request->all();
         $menu = Menu::withTrashed()->with('submenu')->find($request->menuid);
         $roles = '';
         foreach ($request->menuroles as $role) {
             $roles .= $role . ',';
         }
         $menu->current =  $request->menuscurrent;
-        if (!$menu->submenu->count()) {
-            if (substr($request->menuscurrent, 0, 1) == '/') {
-                $menu->current =  str(substr($request->menuscurrent, 1, strlen($request->menuscurrent) - 1))->lower();
-            }
-        } else {
+        if ($menu->submenu->count()) {
+            // return $menu;
             $menu->current = $menu->current;
         }
         if ($request->nomor !== $menu->nomor) {
             $menu->nomor = $request->nomor;
         }
+        // return $menu;
         $menu->name = $request->menuname;
         $menu->link = str($request->menulink)->lower() ?: '#';
         $menu->roles = $roles;

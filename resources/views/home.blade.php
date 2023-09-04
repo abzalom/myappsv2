@@ -22,6 +22,7 @@
                 </div>
                 <div class="card-body">
                     <h1>Aplikasi E-Planning untuk digunakan sendiri sebagai alat bantu</h1>
+                    @dump(session()->all())
                 </div>
             </div>
         </div>

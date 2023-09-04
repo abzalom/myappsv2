@@ -4,12 +4,12 @@ namespace App\Models\Rkpd\Rancangan;
 
 use App\Models\Scopes\TahunScope;
 use Illuminate\Database\Eloquent\Model;
-use App\Models\Rkpd\Ranwal\Rancangan1Urusan;
-use App\Models\Rkpd\Ranwal\Rancangan3Program;
-use App\Models\Rkpd\Ranwal\Rancangan5Subkegiatan;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use App\Models\Rkpd\Rancangan\Rancangan1Urusan;
+use App\Models\Rkpd\Rancangan\Rancangan3Program;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use App\Models\Rkpd\Rancangan\Rancangan5Subkegiatan;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Rancangan2Bidang extends Model
 {

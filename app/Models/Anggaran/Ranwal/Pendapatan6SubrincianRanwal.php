@@ -21,11 +21,6 @@ class Pendapatan6SubrincianRanwal extends Model
         static::addGlobalScope(new TahunScope);
     }
 
-    /**
-     * Get all of the uraians for the Pendapatan6SubrincianRanwal
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     */
     public function uraians(): HasMany
     {
         return $this->hasMany(Pendapatan7UraianRanwal::class, 'kode_subrincian', 'kode_subrincian');

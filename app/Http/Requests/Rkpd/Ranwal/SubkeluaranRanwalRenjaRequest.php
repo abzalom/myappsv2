@@ -9,19 +9,11 @@ use App\Models\Rkpd\Ranwal\Ranwal6Subkeluaran;
 
 class SubkeluaranRanwalRenjaRequest extends FormRequest
 {
-    /**
-     * Determine if the user is authorized to make this request.
-     */
     public function authorize(): bool
     {
         return true;
     }
 
-    /**
-     * Get the validation rules that apply to the request.
-     *
-     * @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array|string>
-     */
     public function rules(): array
     {
         if ($this->aksi == 'create') {
@@ -93,7 +85,7 @@ class SubkeluaranRanwalRenjaRequest extends FormRequest
             if ($sisa < 0) {
                 return [
                     'value' => false,
-                    'sumberdana' => $pagu->uraianpendapatan->uraian,
+                    'sumberdana' => $pagu->sumberdana->uraian,
                     'sisa' => $sisaalokasi,
                     'input' => $this->anggaran,
                 ];
@@ -103,12 +95,12 @@ class SubkeluaranRanwalRenjaRequest extends FormRequest
             ];
         }
         $pagusubkel = $pagu->subkeluarans->sum('anggaran') - $subkel->anggaran;;
-        $sisaalokasi = (float) $pagu->jumlah - $pagusubkel;
+        $sisaalokasi = $pagu->jumlah - $pagusubkel;
         $sisa = $sisaalokasi - $this->anggaran;
         if ($sisa < 0) {
             return [
                 'value' => false,
-                'sumberdana' => $pagu->uraianpendapatan->uraian,
+                'sumberdana' => $pagu->sumberdana->uraian,
                 'sisa' => $sisaalokasi,
                 'input' => $this->anggaran,
             ];
@@ -141,7 +133,7 @@ class SubkeluaranRanwalRenjaRequest extends FormRequest
                 'satuan' => $subkeg->satuan,
                 'anggaran' => $this->anggaran,
                 'anggaran_maju' => $this->anggaran_maju,
-                'sumberdana' => $sumberdana->kode_uraian,
+                'sumberdana' => $sumberdana->kode_unik_sumberdana,
                 'lokasi' => $this->lokasi,
                 'tahun' => tahun(),
             ];
@@ -161,7 +153,7 @@ class SubkeluaranRanwalRenjaRequest extends FormRequest
             'satuan' => $subkeg->satuan,
             'anggaran' => $this->anggaran,
             'anggaran_maju' => $this->anggaran_maju,
-            'sumberdana' => $sumberdana->kode_uraian,
+            'sumberdana' => $sumberdana->kode_unik_sumberdana,
             'lokasi' => $this->lokasi,
             'tahun' => tahun(),
         ];
@@ -177,7 +169,7 @@ class SubkeluaranRanwalRenjaRequest extends FormRequest
         $subkeluaran->target = $this->target;
         $subkeluaran->anggaran = $this->anggaran;
         $subkeluaran->anggaran_maju = $this->anggaran_maju;
-        $subkeluaran->sumberdana = $sumberdana->kode_uraian;
+        $subkeluaran->sumberdana = $sumberdana->kode_unik_sumberdana;
         $subkeluaran->lokasi = $this->lokasi;
         $subkeluaran->tahun = tahun();
         $subkeluaran->save();

@@ -14,7 +14,8 @@ return new class extends Migration
         Schema::create('opd_pagus', function (Blueprint $table) {
             $table->id();
             $table->string('kode_opd');
-            $table->string('kode_uraian');
+            // $table->string('kode_uraian');
+            $table->string('kode_sumberdana');
             $table->string('jumlah');
             $table->year('tahun');
             $table->softDeletes();

@@ -71,5 +71,6 @@ class Kernel extends HttpKernel
 
         // Middleware Buatan Sendiri
         'rkpd' => \App\Http\Middleware\JadwalRkpd::class,
+        'tahun' => \App\Http\Middleware\Tahun::class,
     ];
 }

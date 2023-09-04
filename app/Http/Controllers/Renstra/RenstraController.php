@@ -12,8 +12,13 @@ class RenstraController extends Controller
     public function renstra()
     {
         $rpjmd = RpjmdPeriode::where('active', true)->first();
-        $awal = $rpjmd->awal;
-        $interval = (int) $rpjmd->akhir - (int) $rpjmd->awal;
+        // $awal = now()->format('Y');
+        // return $awal;
+        $awal = $rpjmd ? $rpjmd->awal : now()->format('Y');
+        $akhir = $rpjmd ? $rpjmd->akhit : now()->format('Y') + 5;
+        $desc_awal = $rpjmd ? $rpjmd->awal : now()->format('Y');
+        $desc_akhir = $rpjmd ? $rpjmd->akhit : now()->format('Y') + 5;
+        $interval = (int) $akhir - (int) $awal;
         // echo $interval;
         $tahuns = [];
         for ($i = 0; $i <= $interval; $i++) {
@@ -22,7 +27,7 @@ class RenstraController extends Controller
         return view('renstra.renstra-opd', [
             'apps' => [
                 'title' => 'Renstra',
-                'desc' => 'Renstra Perangkat Daerah Periode RPJMD ' . $rpjmd->awal . ' - ' . $rpjmd->akhir,
+                'desc' => 'Renstra Perangkat Daerah Periode RPJMD ' . $desc_awal . ' - ' . $desc_akhir,
             ],
             'opds' => Opd::get(),
             'rpjmd' => $rpjmd,

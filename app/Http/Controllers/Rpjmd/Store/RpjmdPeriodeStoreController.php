@@ -64,6 +64,25 @@ class RpjmdPeriodeStoreController extends Controller
         $periode = RpjmdPeriode::find($request->periode_id);
         $periode->active = true;
         $periode->save();
+        $interval = $periode->akhir - $periode->awal;
+        $data['tahuns'] = [];
+        $data['aktif'] = [];
+
+        for ($i = 0; $i <= (int) $interval; $i++) {
+            $tahun = $periode->awal + $i;
+            array_push(
+                $data['tahuns'],
+                $tahun
+            );
+            if ($tahun == session()->get('tahun')) {
+                array_push(
+                    $data['aktif'],
+                    $tahun
+                );
+            }
+        }
+        session()->forget('periode');
+        session()->put('periode', $data);
         return back()->with('pesan', 'Data periode jabatan kepala daerah dan wakil kepala daerah untuk ' . $periode->kdh . ' dan ' . $periode->wkdh . ' berhasil diaktifkan!');
     }
 }

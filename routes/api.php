@@ -9,6 +9,7 @@ use App\Http\Controllers\Api\RekeningApiController;
 use App\Http\Controllers\Api\RolesAndPermissionsApiController;
 use App\Http\Controllers\Api\RpjmdApiController;
 use App\Http\Controllers\Api\RpjmdSelectApiController;
+use App\Http\Controllers\Api\SumberdanaApiController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -26,6 +27,8 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->get('/api/user', function (Request $request) {
     return $request->user();
 });
+
+Route::get('/api/nomen/urusan', [NomensApiController::class, 'urusan']);
 
 Route::middleware('auth')->group(function () {
     Route::post('/api/menus', [ConfigApiController::class, 'all_menu'])
@@ -66,8 +69,8 @@ Route::middleware('auth')->group(function () {
     /**
      * API NOMENKLATUR KEPMENDAGRI 050-5889 TAHUN 2022
      */
-    Route::post('/api/nomen/urusan', [NomensApiController::class, 'urusan'])
-        ->middleware('role:admin|bappeda|eselon-2a|eselon-2b|eselon-3a|eselon-3b|eselon-4a|eselon-4b');
+    // Route::post('/api/nomen/urusan', [NomensApiController::class, 'urusan'])
+    //     ->middleware('role:admin|bappeda|eselon-2a|eselon-2b|eselon-3a|eselon-3b|eselon-4a|eselon-4b');
 
     Route::post('/api/nomen/bidang', [NomensApiController::class, 'bidang'])
         ->middleware('role:admin|bappeda|eselon-2a|eselon-2b|eselon-3a|eselon-3b|eselon-4a|eselon-4b');
@@ -124,4 +127,12 @@ Route::middleware('auth')->group(function () {
      */
     Route::post('/api/opd/all', [OpdApiController::class, 'opdall'])->middleware('role:admin|bappeda');
     Route::post('/api/opd/kode', [OpdApiController::class, 'opdbykode'])->middleware('role:admin|bappeda');
+
+    /**
+     * API Sumber Pendanaan
+     */
+    Route::post('/api/sumberdanaranwal/search', [SumberdanaApiController::class, 'searchSumberdanaRanwal'])->middleware('role:admin|bappeda');
+    Route::post('/api/sumberdanaranwal/id', [SumberdanaApiController::class, 'idSumberdanaRanwal'])->middleware('role:admin|bappeda');
+    Route::post('/api/sumberdanarancangan/search', [SumberdanaApiController::class, 'searchSumberdanRancangan'])->middleware('role:admin|bappeda');
+    Route::post('/api/sumberdanarancangan/id', [SumberdanaApiController::class, 'idSumberdanaRancangan'])->middleware('role:admin|bappeda');
 });
