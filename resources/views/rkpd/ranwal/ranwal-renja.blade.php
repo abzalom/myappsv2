@@ -29,41 +29,41 @@
                 </div>
                 <div class="card-body">
                     <h5>{{ $opd->kode_opd . ' - ' . $opd->nama_opd }}</h5>
-                    <table class="table table-sm table-bordered" style="width: 75%; font-size: 90%">
-                        <thead>
-                            <tr class="align-middle">
-                                <th style="width: 18%">Kode</th>
-                                <th>Sumber Dana</th>
-                                <th class="text-center">Batasan Pagu</th>
-                                <th class="text-center">Inputan Renja</th>
-                                <th class="text-center">Sisa Anggaran</th>
-                            </tr>
-                        </thead>
-                        <tbody class="align-middle">
-                            @foreach ($infopagus as $pagu)
-                                <tr>
-                                    <td class="text-start">{{ $pagu->kode_unik_sumberdana }}</td>
-                                    <td>{{ $pagu->sumberdana->uraian }}</td>
-                                    <td class="text-end">{{ number_format($pagu->jumlah, 2, ',', '.') }}</td>
-                                    <td class="text-end">{{ number_format($pagu->subkeluarans_sum_anggaran, 2, ',', '.') }}</td>
-                                    <td class="text-end">{{ number_format($pagu->jumlah - $pagu->subkeluarans_sum_anggaran, 2, ',', '.') }}</td>
-                                </tr>
-                            @endforeach
-                            <tr>
-                                <th class="text-end" colspan="2">Total Alokasi Pagu</th>
-                                <th class="text-end">{{ number_format($opd->paguranwals_sum_jumlah, 2, ',', '.') }}</th>
-                                <th class="text-end">{{ number_format($opd->ranwalsubkeluarans_sum_anggaran, 2, ',', '.') }}</th>
-                                <th class="text-end">{{ number_format($opd->paguranwals_sum_jumlah - $opd->ranwalsubkeluarans_sum_anggaran, 2, ',', '.') }}</th>
-                            </tr>
-                        </tbody>
-                    </table>
                     <div class="mb-3 col">
                         <h5>Jadwal Tahapan Ranwal {!! countdownRkpd('ranwal', session()->get('tahun')) !!}</h5>
                     </div>
                     @if (lockRkpd('ranwal', session()->get('tahun')))
+                        <table class="table table-sm table-bordered" style="width: 75%; font-size: 90%">
+                            <thead>
+                                <tr class="align-middle">
+                                    <th style="width: 18%">Kode</th>
+                                    <th>Sumber Dana</th>
+                                    <th class="text-center">Batasan Pagu</th>
+                                    <th class="text-center">Inputan Renja</th>
+                                    <th class="text-center">Sisa Anggaran</th>
+                                </tr>
+                            </thead>
+                            <tbody class="align-middle">
+                                @foreach ($infopagus as $pagu)
+                                    <tr>
+                                        <td class="text-start">{{ $pagu->kode_unik_sumberdana }}</td>
+                                        <td>{{ $pagu->sumberdana->uraian }}</td>
+                                        <td class="text-end">{{ number_format($pagu->jumlah, 2, ',', '.') }}</td>
+                                        <td class="text-end">{{ number_format($pagu->subkeluarans_sum_anggaran, 2, ',', '.') }}</td>
+                                        <td class="text-end">{{ number_format($pagu->jumlah - $pagu->subkeluarans_sum_anggaran, 2, ',', '.') }}</td>
+                                    </tr>
+                                @endforeach
+                                <tr>
+                                    <th class="text-end" colspan="2">Total Alokasi Pagu</th>
+                                    <th class="text-end">{{ number_format($opd->paguranwals_sum_jumlah, 2, ',', '.') }}</th>
+                                    <th class="text-end">{{ number_format($opd->ranwalsubkeluarans_sum_anggaran, 2, ',', '.') }}</th>
+                                    <th class="text-end">{{ number_format($opd->paguranwals_sum_jumlah - $opd->ranwalsubkeluarans_sum_anggaran, 2, ',', '.') }}</th>
+                                </tr>
+                            </tbody>
+                        </table>
                         <div class="row mb-4">
                             <div class="col-2">
-                                @can('input renja')
+                                @can('input-renja')
                                     <a href="/ranwal/rkpd/opd/{{ $opd->id }}/subkegiatan" class="btn btn-primary"><i class="fa-solid fa-plus-square fa-lg"></i> Sub Kegiatan</a>
                                 @endcan
                             </div>

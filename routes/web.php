@@ -1,13 +1,15 @@
 <?php
 
+use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Configs\AppController;
+use App\Http\Controllers\TemplateBuildController;
 use App\Http\Controllers\Configs\AppStoreController;
+use App\Http\Controllers\Management\User\UserController;
 use App\Http\Controllers\Configs\Jadwal\JadwalController;
+use App\Http\Controllers\Management\User\UserStoreController;
 use App\Http\Controllers\Configs\Jadwal\JadwalStoreController;
 use App\Http\Controllers\Settings\RoleAndPermissionController;
 use App\Http\Controllers\Settings\RoleAndPermissionStoreController;
-use App\Http\Controllers\TemplateBuildController;
-use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------
@@ -75,7 +77,8 @@ Route::middleware(['auth'])->group(function () {
             Route::post('/config/jadwal/rkpd', 'store_jadwal_rkpd');
             Route::post('/config/jadwal/rkpd/update', 'update_jadwal_rkpd');
             Route::post('/config/jadwal/rkpd/destory', 'destory_jadwal_rkpd');
-            Route::post('/config/jadwal/rkpd/synchorn', 'synchorn');
+            Route::post('/config/jadwal/rkpd/synchorn/rancangan', 'synchornRancangan');
+            Route::post('/config/jadwal/rkpd/synchorn/perubahan', 'synchornPerubahan');
         });
 
         /**
@@ -88,6 +91,18 @@ Route::middleware(['auth'])->group(function () {
             Route::post('/setting/roles/save', 'rolesave');
             Route::post('/setting/roles/update', 'roleupdate');
             Route::post('/setting/roles/destory', 'roledestory');
+        });
+        /**
+         * Settings Users
+         */
+        Route::controller(UserController::class)->group(function () {
+            Route::get('/user/setting/users', 'home');
+        });
+        Route::controller(UserStoreController::class)->group(function () {
+            Route::post('/user/setting/users', 'store');
+            Route::post('/user/setting/users/reset', 'reset');
+            Route::post('/user/setting/users/lock', 'lock');
+            Route::post('/user/setting/users/unlock', 'unlock');
         });
     });
 });

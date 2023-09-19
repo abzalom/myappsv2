@@ -2,13 +2,15 @@
 
 namespace App\Http\Controllers\Configs\Jadwal;
 
-use App\Http\Controllers\Controller;
-use App\Http\Requests\SynchornRkpdRequest;
-use App\Models\Rkpd\Ranwal\Ranwal1Urusan;
-use App\Models\SumberdanaRanwal;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Validation\Rule;
+use App\Models\SumberdanaRanwal;
+use Illuminate\Support\Facades\DB;
+use App\Http\Controllers\Controller;
+use App\Models\Rkpd\Ranwal\Ranwal1Urusan;
+use App\Http\Requests\SynchornRkpdRequest;
+use App\Http\Requests\SynchornRkpdPerubahanRequest;
+use App\Http\Requests\SynchornRkpdRancanganRequest;
 
 class JadwalStoreController extends Controller
 {
@@ -71,14 +73,21 @@ class JadwalStoreController extends Controller
         return redirect()->to('/config/jadwal')->with('pesan', 'Jadwal pelaksanaan RKPD tahapan dikunci!');
     }
 
-    public function synchorn(SynchornRkpdRequest $request)
+    public function synchornRancangan(SynchornRkpdRancanganRequest $request)
     {
-        if ($request->tahapan == 'rancangan') {
-            $pendapatan = $request->synchornPendapatanRanwalKeRancangan();
-            $sumberdana = $request->synchornSumberdanaranwalKeRancangan();
-            $paguopd = $request->synchornPaguRanwalKeRancangan();
-            $rkpd = $request->synchornRkpdRanwalKeRancangan();
-            return redirect()->to('/config/jadwal')->with('pesan', 'Tahapan rancangan berhasil disinkron!');
-        }
+        $pendapatan = $request->synchornPendapatanRanwalKeRancangan();
+        $sumberdana = $request->synchornSumberdanaranwalKeRancangan();
+        $paguopd = $request->synchornPaguRanwalKeRancangan();
+        $rkpd = $request->synchornRkpdRanwalKeRancangan();
+        return redirect()->to('/config/jadwal')->with('pesan', 'Tahapan rancangan berhasil disinkron!');
+    }
+
+    public function synchornPerubahan(SynchornRkpdPerubahanRequest $request)
+    {
+        $pendapatan = $request->synchornPendapatanRancanganKePerubahan();
+        $sumberdana = $request->synchornSumberdanaRancanganKePerubahan();
+        $paguopd = $request->synchornPaguRancanganKePerubahan();
+        $rkpd = $request->synchornRkpdRancanganKePerubahan();
+        return redirect()->to('/config/jadwal')->with('pesan', 'Tahapan perubahan berhasil disinkron!');
     }
 }

@@ -1,0 +1,15 @@
+body {
+    background-color: hsl(221, 100%, 7%);
+    font-family: 'ABeeZee';
+    font-size: 22px;
+}
+
+.card {
+    background-color: hsl(221, 100%, 7%);
+}
+
+a,
+.card {
+    color: hsl(178, 76%, 90%);
+    text-decoration: none;
+}

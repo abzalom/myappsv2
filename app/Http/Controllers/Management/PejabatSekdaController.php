@@ -35,7 +35,7 @@ class PejabatSekdaController extends Controller
         $data = $request->validate(
             [
                 'nama' => 'required',
-                'nip' => 'required|numeric|digits:16',
+                'nip' => 'required|numeric|digits_between:16,20',
                 'pangkat' => 'required|numeric',
                 'tahun' => 'required|numeric|date_format:Y|digits:4',
             ],
@@ -43,7 +43,7 @@ class PejabatSekdaController extends Controller
                 'nama.required' => 'Nama tidak boleh kosong!',
                 'nip.required' => 'NIP tidak boleh kosong!',
                 'nip.numeric' => 'NIP hanya boleh berupa nomor/angka!',
-                'nip.digits' => 'NIP harus 16 digit!',
+                'nip.digits_between' => 'NIP manimal 16 digit dan maksimal 20 digit!',
                 'pangkat.required' => 'Pangkat tidak boleh kosong!',
                 'pangkat.numeric' => 'Value pangkat tidak benar!',
                 'tahun.required' => 'Tahun tidak boleh kosong!',

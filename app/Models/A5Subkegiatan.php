@@ -10,6 +10,8 @@ class A5Subkegiatan extends Model
 {
     use HasFactory;
 
+    protected $guarded = ['id'];
+
     /**
      * Get the kegiatan that owns the A5Subkegiatan
      *

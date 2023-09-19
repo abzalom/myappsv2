@@ -20,9 +20,14 @@ return new class extends Migration
             $table->string('kode_kegiatan');
             $table->text('uraian');
 
+            // semula
             $table->text('capaian')->nullable();
             $table->float('target_capaian', 8, 2)->nullable();
             $table->string('satuan_capaian')->nullable();
+            // menjadi
+            $table->text('menjadi_capaian')->nullable();
+            $table->float('menjadi_target_capaian', 8, 2)->nullable();
+            $table->string('menjadi_satuan_capaian')->nullable();
 
             $table->year('tahun');
             $table->softDeletes();

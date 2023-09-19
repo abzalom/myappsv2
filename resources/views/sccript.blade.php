@@ -1,3 +1,5 @@
+{{-- <script src="/asset/popper.js"></script> --}}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.9.2/umd/popper.min.js"></script>
 <script src="/vendors/bootstrap-5.3.0/js/bootstrap.bundle.min.js"></script>
 {{-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script> --}}
 {{-- <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.0/dist/jquery.slim.min.js"></script> --}}
@@ -15,6 +17,19 @@
 <script src="{{ asset('vendors/datatables/RowGroup-1.2.0/js/rowGroup.bootstrap5.min.js') }}"></script>
 <script src="{{ asset('vendors/fontawesome/js/all.js') }}"></script>
 <script>
+    // ToolTip Boostrap 5
+    const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
+    const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))
+    // Toast Bootstrap 5
+    const toastTrigger = document.getElementById('liveToastBtn')
+    const toastLiveExample = document.getElementById('liveToast')
+    if (toastTrigger) {
+        toastTrigger.addEventListener('click', () => {
+            const toast = new bootstrap.Toast(toastLiveExample)
+
+            toast.show()
+        })
+    }
     $('.select2-single').each(function() {
         $(this).select2({
             theme: "bootstrap-5",

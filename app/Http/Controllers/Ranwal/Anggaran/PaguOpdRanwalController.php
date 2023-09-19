@@ -20,10 +20,9 @@ class PaguOpdRanwalController extends Controller
                 'title' => 'Pagu OPD',
                 'desc' => 'Rancangan Awal Pagu OPD Tahun ' . tahun(),
             ],
-            'total' => PaguRanwalOpd::sum('jumlah'),
+            'total' => PaguRanwalOpd::whereHas('opd')->sum('jumlah'),
             'opds' => $opds,
-            // 'pagutrashes' => OpdPagu::onlyTrashed()->orderBy('kode_opd')->get(),
-            'pagutrashes' => PaguRanwalOpd::onlyTrashed()->orderBy('kode_opd')->get(),
+            'pagutrashes' => PaguRanwalOpd::onlyTrashed()->whereHas('opd')->orderBy('kode_opd')->get(),
         ]);
     }
 }

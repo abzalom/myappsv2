@@ -19,6 +19,7 @@ return new class extends Migration
             $table->foreignIdFor(PangkatPegawai::class);
             $table->string('phone');
             $table->string('email')->unique();
+            $table->softDeletes();
             $table->timestamps();
         });
     }

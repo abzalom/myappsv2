@@ -9,30 +9,26 @@
                 <ul class="nav me-auto mb-2 mb-lg-0 nav-pills">
 
                     @foreach ($menus as $menu)
-                        @foreach ($menu->roles as $role)
-                            @role(trim($role))
-                                @if (count($menu->submenu) == 0)
-                                    <li class="nav-item">
-                                        <a class="nav-link {{ request()->is($menu->current) ? 'active' : '' }}" aria-current="page" href="{{ $menu->link }}">{{ $menu->name }}</a>
-                                    </li>
-                                @else
-                                    <li class="nav-item dropdown">
-                                        <a class="nav-link {{ request()->is($menu->current) ? 'active' : '' }} dropdown-toggle" href="{{ $menu->link }}" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                            {{ $menu->name }}
-                                        </a>
-                                        <ul class="dropdown-menu">
-                                            @foreach ($menu->submenu as $sub)
-                                                @foreach ($sub->roles as $subrole)
-                                                    @role(trim($subrole))
-                                                        <li><a class="dropdown-item" href="{{ $menu->link . $sub->sub_link }}">{{ $sub->sub_name }}</a></li>
-                                                    @endrole
-                                                @endforeach
-                                            @endforeach
-                                        </ul>
-                                    </li>
-                                @endif
-                            @endrole
-                        @endforeach
+                        @role($menu->roles)
+                            @if (count($menu->submenu) == 0)
+                                <li class="nav-item">
+                                    <a class="nav-link {{ request()->is($menu->current) ? 'active' : '' }}" aria-current="page" href="{{ $menu->link }}">{{ $menu->name }}</a>
+                                </li>
+                            @else
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link {{ request()->is($menu->current) ? 'active' : '' }} dropdown-toggle" href="{{ $menu->link }}" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                        {{ $menu->name }}
+                                    </a>
+                                    <ul class="dropdown-menu">
+                                        @foreach ($menu->submenu as $sub)
+                                            @role($sub->roles)
+                                                <li><a class="dropdown-item" href="{{ $menu->link . $sub->sub_link }}">{{ $sub->sub_name }}</a></li>
+                                            @endrole
+                                        @endforeach
+                                    </ul>
+                                </li>
+                            @endif
+                        @endrole
                     @endforeach
 
                     <li class="nav-item dropdown">

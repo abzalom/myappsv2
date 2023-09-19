@@ -135,4 +135,6 @@ Route::middleware('auth')->group(function () {
     Route::post('/api/sumberdanaranwal/id', [SumberdanaApiController::class, 'idSumberdanaRanwal'])->middleware('role:admin|bappeda');
     Route::post('/api/sumberdanarancangan/search', [SumberdanaApiController::class, 'searchSumberdanRancangan'])->middleware('role:admin|bappeda');
     Route::post('/api/sumberdanarancangan/id', [SumberdanaApiController::class, 'idSumberdanaRancangan'])->middleware('role:admin|bappeda');
+    Route::post('/api/sumberdanaperubahan/search', [SumberdanaApiController::class, 'searchSumberdanPerubahan'])->middleware('role:admin|bappeda');
+    Route::post('/api/sumberdanaperubahan/id', [SumberdanaApiController::class, 'idSumberdanaPerubahan'])->middleware('role:admin|bappeda');
 });

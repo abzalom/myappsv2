@@ -68,7 +68,7 @@
                                         <td style="width: 10%; text-align: center">
                                             <div class="btn-group" role="group">
                                                 <a href="/ranwal/sumberdana/form?edit={{ $ranwal->id }}" class="btn btn-sm btn-info"><i class="fa-solid fa-edit"></i></a>
-                                                @if ($ranwal->paguranwals->count() == 0)
+                                                @if ($ranwal->pagus->count() == 0)
                                                     <form action="/ranwal/sumberdana/destroy" method="post">
                                                         @csrf
                                                         <input type="hidden" name="id" value="{{ $ranwal->id }}">

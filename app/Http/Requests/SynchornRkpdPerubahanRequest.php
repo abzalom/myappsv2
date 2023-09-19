@@ -2,48 +2,39 @@
 
 namespace App\Http\Requests;
 
-use App\Models\SumberdanaRanwal;
-use App\Models\SumberdanaRancangan;
-use App\Models\Rkpd\Ranwal\Ranwal1Urusan;
-use Illuminate\Foundation\Http\FormRequest;
-use App\Models\Anggaran\Ranwal\Pendapatan1AkunRanwal;
-use App\Models\Anggaran\Rancangan\Pendapatan1AkunRancangan;
-use App\Models\Anggaran\Rancangan\Pendapatan3JenisRancangan;
-use App\Models\Anggaran\Rancangan\Pendapatan4ObjekRancangan;
-use App\Models\Anggaran\Rancangan\Pendapatan5RincianRancangan;
-use App\Models\Anggaran\Rancangan\Pendapatan2KelompokRancangan;
-use App\Models\Anggaran\Rancangan\Pendapatan6SubrincianRancangan;
-use App\Models\Anggaran\Rancangan\Pendapatan7UraianRancangan;
-use App\Models\Opd;
 use App\Models\PaguRancanganOpd;
-use App\Models\PaguRanwalOpd;
+use App\Models\SumberdanaRancangan;
+use App\Models\PaguOpd\PaguPerubahanOpd;
+use Illuminate\Foundation\Http\FormRequest;
+use App\Models\Rkpd\Perubahan\Perubahan1Urusan;
+use App\Models\Rkpd\Perubahan\Perubahan2Bidang;
 use App\Models\Rkpd\Rancangan\Rancangan1Urusan;
 use App\Models\Rkpd\Rancangan\Rancangan2Bidang;
+use App\Models\Rkpd\Perubahan\Perubahan3Program;
 use App\Models\Rkpd\Rancangan\Rancangan3Program;
+use App\Models\Rkpd\Perubahan\Perubahan4Kegiatan;
 use App\Models\Rkpd\Rancangan\Rancangan4Kegiatan;
+use App\Models\Sumberpendanaan\SumberdanaPerubahan;
+use App\Models\Rkpd\Perubahan\Perubahan5Subkegiatan;
+use App\Models\Rkpd\Perubahan\Perubahan6Subkeluaran;
 use App\Models\Rkpd\Rancangan\Rancangan5Subkegiatan;
 use App\Models\Rkpd\Rancangan\Rancangan6Subkeluaran;
-use App\Models\Rkpd\Ranwal\Ranwal2Bidang;
-use App\Models\Rkpd\Ranwal\Ranwal3Program;
-use App\Models\Rkpd\Ranwal\Ranwal4Kegiatan;
-use App\Models\Rkpd\Ranwal\Ranwal5Subkegiatan;
-use App\Models\Rkpd\Ranwal\Ranwal6Subkeluaran;
+use App\Models\Anggaran\Perubahan\Pendapatan1AkunPerubahan;
+use App\Models\Anggaran\Rancangan\Pendapatan1AkunRancangan;
+use App\Models\Anggaran\Perubahan\Pendapatan3JenisPerubahan;
+use App\Models\Anggaran\Perubahan\Pendapatan4ObjekPerubahan;
+use App\Models\Anggaran\Perubahan\Pendapatan7UraianPerubahan;
+use App\Models\Anggaran\Perubahan\Pendapatan5RincianPerubahan;
+use App\Models\Anggaran\Perubahan\Pendapatan2KelompokPerubahan;
+use App\Models\Anggaran\Perubahan\Pendapatan6SubrincianPerubahan;
 
-class SynchornRkpdRequest extends FormRequest
+class SynchornRkpdPerubahanRequest extends FormRequest
 {
-    /**
-     * Determine if the user is authorized to make this request.
-     */
     public function authorize(): bool
     {
         return true;
     }
 
-    /**
-     * Get the validation rules that apply to the request.
-     *
-     * @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array|string>
-     */
     public function rules(): array
     {
         return [
@@ -51,9 +42,9 @@ class SynchornRkpdRequest extends FormRequest
         ];
     }
 
-    public function synchornPendapatanRanwalKeRancangan()
+    public function synchornPendapatanRancanganKePerubahan()
     {
-        $pendapatans = Pendapatan1AkunRanwal::with([
+        $pendapatans = Pendapatan1AkunRancangan::with([
             'kelompoks',
             'kelompoks.jenises',
             'kelompoks.jenises.objeks',
@@ -61,7 +52,7 @@ class SynchornRkpdRequest extends FormRequest
             'kelompoks.jenises.objeks.rincians.subrincians.uraians',
         ])->get();
         foreach ($pendapatans as $akun) {
-            Pendapatan1AkunRancangan::updateOrCreate(
+            Pendapatan1AkunPerubahan::updateOrCreate(
                 [
                     'kode_akun' => $akun->kode_akun,
                     'tahun' => $akun->tahun,
@@ -71,7 +62,7 @@ class SynchornRkpdRequest extends FormRequest
                 ]
             );
             foreach ($akun->kelompoks as $kelompok) {
-                Pendapatan2KelompokRancangan::updateOrCreate(
+                Pendapatan2KelompokPerubahan::updateOrCreate(
                     [
                         'kode_akun' => $kelompok->kode_akun,
                         'kode_kelompok' => $kelompok->kode_kelompok,
@@ -82,7 +73,7 @@ class SynchornRkpdRequest extends FormRequest
                     ]
                 );
                 foreach ($kelompok->jenises as $jenis) {
-                    Pendapatan3JenisRancangan::updateOrCreate(
+                    Pendapatan3JenisPerubahan::updateOrCreate(
                         [
                             'kode_akun' => $jenis->kode_akun,
                             'kode_kelompok' => $jenis->kode_kelompok,
@@ -94,7 +85,7 @@ class SynchornRkpdRequest extends FormRequest
                         ]
                     );
                     foreach ($jenis->objeks as $objek) {
-                        Pendapatan4ObjekRancangan::updateOrCreate(
+                        Pendapatan4ObjekPerubahan::updateOrCreate(
                             [
                                 'kode_akun' => $objek->kode_akun,
                                 'kode_kelompok' => $objek->kode_kelompok,
@@ -107,7 +98,7 @@ class SynchornRkpdRequest extends FormRequest
                             ]
                         );
                         foreach ($objek->rincians as $rincian) {
-                            Pendapatan5RincianRancangan::updateOrCreate(
+                            Pendapatan5RincianPerubahan::updateOrCreate(
                                 [
                                     'kode_akun' => $rincian->kode_akun,
                                     'kode_kelompok' => $rincian->kode_kelompok,
@@ -121,7 +112,7 @@ class SynchornRkpdRequest extends FormRequest
                                 ]
                             );
                             foreach ($rincian->subrincians as $subrincian) {
-                                Pendapatan6SubrincianRancangan::updateOrCreate(
+                                Pendapatan6SubrincianPerubahan::updateOrCreate(
                                     [
                                         'kode_akun' => $subrincian->kode_akun,
                                         'kode_kelompok' => $subrincian->kode_kelompok,
@@ -136,7 +127,7 @@ class SynchornRkpdRequest extends FormRequest
                                     ]
                                 );
                                 foreach ($subrincian->uraians as $uraian) {
-                                    Pendapatan7UraianRancangan::updateOrCreate(
+                                    Pendapatan7UraianPerubahan::updateOrCreate(
                                         [
                                             'kode_akun' => $uraian->kode_akun,
                                             'kode_kelompok' => $uraian->kode_kelompok,
@@ -161,11 +152,11 @@ class SynchornRkpdRequest extends FormRequest
         }
     }
 
-    public function synchornSumberdanaranwalKeRancangan()
+    public function synchornSumberdanaRancanganKePerubahan()
     {
-        $sumberdanas = SumberdanaRanwal::get();
+        $sumberdanas = SumberdanaRancangan::get();
         foreach ($sumberdanas as $sumberdana) {
-            SumberdanaRancangan::updateOrCreate(
+            SumberdanaPerubahan::updateOrCreate(
                 [
                     'kode_sumberdana' => $sumberdana->kode_sumberdana,
                     'nomor' => $sumberdana->nomor,
@@ -180,11 +171,11 @@ class SynchornRkpdRequest extends FormRequest
         }
     }
 
-    public function synchornPaguRanwalKeRancangan()
+    public function synchornPaguRancanganKePerubahan()
     {
-        $paguopds = PaguRanwalOpd::get();
+        $paguopds = PaguRancanganOpd::get();
         foreach ($paguopds as $paguopd) {
-            PaguRancanganOpd::updateOrCreate(
+            PaguPerubahanOpd::updateOrCreate(
                 [
                     'kode_opd' => $paguopd->kode_opd,
                     'kode_sumberdana' => $paguopd->kode_sumberdana,
@@ -198,11 +189,11 @@ class SynchornRkpdRequest extends FormRequest
         }
     }
 
-    public function synchornRkpdRanwalKeRancangan()
+    public function synchornRkpdRancanganKePerubahan()
     {
-        $urusans = Ranwal1Urusan::get();
+        $urusans = Rancangan1Urusan::get();
         foreach ($urusans as $urusan) {
-            Rancangan1Urusan::updateOrCreate(
+            Perubahan1Urusan::updateOrCreate(
                 [
                     'kode_opd' => $urusan->kode_opd,
                     'kode_urusan' => $urusan->kode_urusan,
@@ -214,9 +205,9 @@ class SynchornRkpdRequest extends FormRequest
             );
         }
 
-        $bidangs = Ranwal2Bidang::get();
+        $bidangs = Rancangan2Bidang::get();
         foreach ($bidangs as $bidang) {
-            Rancangan2Bidang::updateOrCreate(
+            Perubahan2Bidang::updateOrCreate(
                 [
                     'kode_opd' => $bidang->kode_opd,
                     'kode_urusan' => $bidang->kode_urusan,
@@ -229,9 +220,9 @@ class SynchornRkpdRequest extends FormRequest
             );
         }
 
-        $programs = Ranwal3Program::get();
+        $programs = Rancangan3Program::get();
         foreach ($programs as $program) {
-            Rancangan3Program::updateOrCreate(
+            Perubahan3Program::updateOrCreate(
                 [
                     'kode_opd' => $program->kode_opd,
                     'kode_urusan' => $program->kode_urusan,
@@ -245,9 +236,9 @@ class SynchornRkpdRequest extends FormRequest
             );
         }
 
-        $kegiatans = Ranwal4Kegiatan::get();
+        $kegiatans = Rancangan4Kegiatan::get();
         foreach ($kegiatans as $kegiatan) {
-            Rancangan4Kegiatan::updateOrCreate(
+            Perubahan4Kegiatan::updateOrCreate(
                 [
                     'kode_opd' => $kegiatan->kode_opd,
                     'kode_urusan' => $kegiatan->kode_urusan,
@@ -262,9 +253,9 @@ class SynchornRkpdRequest extends FormRequest
             );
         }
 
-        $subkegiatans = Ranwal5Subkegiatan::get();
+        $subkegiatans = Rancangan5Subkegiatan::get();
         foreach ($subkegiatans as $subkegiatan) {
-            Rancangan5Subkegiatan::updateOrCreate(
+            Perubahan5Subkegiatan::updateOrCreate(
                 [
                     'kode_opd' => $subkegiatan->kode_opd,
                     'kode_urusan' => $subkegiatan->kode_urusan,
@@ -290,9 +281,9 @@ class SynchornRkpdRequest extends FormRequest
             );
         }
 
-        $subkeluarans = Ranwal6Subkeluaran::get();
+        $subkeluarans = Rancangan6Subkeluaran::get();
         foreach ($subkeluarans as $subkeluaran) {
-            Rancangan6Subkeluaran::updateOrCreate(
+            Perubahan6Subkeluaran::updateOrCreate(
                 [
                     'kode_opd' => $subkeluaran->kode_opd,
                     'kode_urusan' => $subkeluaran->kode_urusan,

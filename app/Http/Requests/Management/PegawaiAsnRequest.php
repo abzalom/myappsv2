@@ -107,6 +107,7 @@ class PegawaiAsnRequest extends FormRequest
             'name' => $pegawai->nama,
             'username' => $pegawai->nip,
             'email' => $pegawai->email,
+            'nip' => $pegawai->nip,
             'email_verified_at' => now(),
             'password' => Hash::make($pegawai->nip),
         ]);
@@ -149,5 +150,35 @@ class PegawaiAsnRequest extends FormRequest
             'tahun' => tahun(),
         ]);
         $pegawai->user->syncRoles($jabatan->role);
+    }
+
+    public function lockAsnAndUser()
+    {
+        $pegawai = Pegawai::with([
+            'user',
+        ])->find($this->id);
+        $data = [
+            'nama' => $pegawai->nama,
+            'nip' => $pegawai->nip,
+        ];
+        if ($pegawai->user) {
+            $pegawai->user->delete();
+        }
+        $pegawai->delete();
+        return $data;
+    }
+
+    public function unlockAsnAndUser()
+    {
+        $pegawai = Pegawai::withTrashed()->with([
+            'user' => fn ($q) => $q->withTrashed(),
+        ])->find($this->id);
+        $data = [
+            'nama' => $pegawai->nama,
+            'nip' => $pegawai->nip,
+        ];
+        $pegawai->user->restore();
+        $pegawai->restore();
+        return $data;
     }
 }

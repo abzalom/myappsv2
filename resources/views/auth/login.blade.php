@@ -13,14 +13,17 @@
 
     <div class="container">
         <div class="row">
-            <div class="col-4 mx-auto mb-5" style="margin-top: 5%">
+            <div class="col-4 mx-auto mb-5" style="margin-top: 10%">
                 @if (session()->has('pesan'))
                     <div class="alert alert-info">{{ session()->get('pesan') }}</div>
                 @endif
-                <div class="card">
+                <div class="card shadow border-secondary">
                     <div class="card-header">
-                        <h4 class="card-title text-center"><i class="fa-solid fa-user-lock fa-2xl"></i></h4>
-                        <h5 class="card-title text-center">Login Myapps</h5>
+                        {{-- <div class="card-title text-center mt-2"><i class="fa-solid fa-user-lock fa-2xl"></i></div> --}}
+                        <div class="card-title text-center mt-2">
+                            <img src="/asset/img/logokab.png" class="rounded mx-auto d-block w-25" alt="logo kab. mamberamo raya">
+                        </div>
+                        <div class="card-title text-center fw-bold">Login Myapps</div>
                     </div>
                     <form action="{{ route('auth.login') }}" method="post">
                         <div class="card-body">
@@ -40,11 +43,13 @@
                                         <small class="text-danger fw-bold">{{ $message }}</small>
                                     @enderror
                                 </div>
-                                <div class="form-check mb-3">
-                                    <input name="remember" name="remember" class="form-check-input" type="checkbox" id="remember">
-                                    <label class="form-check-label" for="remember">
-                                        Remember me
-                                    </label>
+                                <div class="mb-3">
+                                    <div class="form-check">
+                                        <input name="remember" name="remember" class="form-check-input" type="checkbox" id="remember">
+                                        <label class="form-check-label" for="remember">
+                                            Remember me
+                                        </label>
+                                    </div>
                                 </div>
                             </div>
                         </div>

@@ -12,10 +12,11 @@ use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasOneThrough;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Pegawai extends Model
 {
-    use HasFactory;
+    use HasFactory, SoftDeletes;
 
     // use \Awobaz\Compoships\Compoships;
 
@@ -35,7 +36,7 @@ class Pegawai extends Model
      */
     public function user(): BelongsTo
     {
-        return $this->belongsTo(User::class, 'nip', 'username');
+        return $this->belongsTo(User::class, 'nip', 'nip');
     }
 
     /**

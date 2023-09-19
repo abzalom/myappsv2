@@ -40,7 +40,7 @@
                                     <th>Nama / NIP/ Pangkat</th>
                                     <th>Jabatan</th>
                                     <th>Perangkat Daerah</th>
-                                    <th>User</th>
+                                    <th>Username</th>
                                     <th></th>
                                 </tr>
                             </thead>
@@ -63,13 +63,37 @@
                                             @endif
                                         </td>
                                         <td>
-                                            {{ $pegawai->user->getRoleNames() }}
+                                            @if (!$pegawai->deleted_at)
+                                                @if (!$pegawai->user->deleted_at)
+                                                    {{ $pegawai->user->username }}
+                                                @else
+                                                    <form action="/user/setting/users/unlock" method="post">
+                                                        @csrf
+                                                        <input type="hidden" name="id" value="{{ encrypt($pegawai->user->id) }}">
+                                                        <button type="submit" class="btn btn-sm btn-secondary btn-group-form-last" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Buka akses user"><i class="fa-solid fa-user-lock"></i> dikunci</button>
+                                                    </form>
+                                                @endif
+                                            @else
+                                                <i class="fa-solid fa-user-lock"></i> dikunci
+                                            @endif
                                         </td>
                                         <td class="text-center">
-                                            <div class="btn-group" role="group" aria-label="Basic example">
-                                                <a href="/management/pegawai/asn/{{ $pegawai->id }}/profile" class="btn btn-sm btn-info"><i class="fa-solid fa-user-tie fa-lg"></i></a>
-                                                <button type="button" class="btn btn-sm btn-danger"><i class="fa-solid fa-lock fa-lg"></i></button>
-                                            </div>
+                                            @if (!$pegawai->deleted_at)
+                                                <div class="btn-group" role="group" aria-label="Basic example">
+                                                    <a href="/management/pegawai/asn/{{ $pegawai->id }}/profile" class="btn btn-sm btn-info" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Edit user"><i class="fa-solid fa-user-tie fa-lg"></i></a>
+                                                    <form action="/management/pegawai/asn/lock" method="post">
+                                                        @csrf
+                                                        <input type="hidden" name="id" value="{{ $pegawai->id }}">
+                                                        <button type="submit" class="btn btn-sm btn-danger btn-group-form-last" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Kunci pegawai"><i class="fa-solid fa-user-lock"></i></button>
+                                                    </form>
+                                                </div>
+                                            @else
+                                                <form action="/management/pegawai/asn/unlock" method="post">
+                                                    @csrf
+                                                    <input type="hidden" name="id" value="{{ $pegawai->id }}">
+                                                    <button type="submit" class="btn btn-sm btn-secondary btn-group-form-last" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Aktifkan pegawai"><i class="fa-solid fa-lock-open"></i></button>
+                                                </form>
+                                            @endif
                                         </td>
                                     </tr>
                                 @endforeach

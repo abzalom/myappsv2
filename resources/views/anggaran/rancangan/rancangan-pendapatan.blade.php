@@ -18,7 +18,7 @@
         <div class="col-12">
             <div class="card">
                 <div class="card-header">
-                    <span class="card-title">Ranwal Pendapatan Tahun Anggaran {{ tahun() }}</span>
+                    <span class="card-title">Rancangan Pendapatan Tahun Anggaran {{ tahun() }}</span>
                 </div>
                 <div class="card-body">
                     <div class="row">

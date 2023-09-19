@@ -2,6 +2,7 @@
 
 namespace App\Models\Rkpd\Rancangan;
 
+use App\Models\Opd;
 use App\Models\PaguRancanganOpd;
 use App\Models\Scopes\TahunScope;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -30,5 +31,15 @@ class Rancangan6Subkeluaran extends Model
     public function subkegiatan(): BelongsTo
     {
         return $this->belongsTo(Rancangan5Subkegiatan::class, 'kode_program', 'kode_program');
+    }
+
+    /**
+     * Get the opd that owns the Rancangan6Subkeluaran
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function opd(): BelongsTo
+    {
+        return $this->belongsTo(Opd::class, 'kode_opd', 'kode_opd');
     }
 }

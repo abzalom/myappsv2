@@ -47,7 +47,7 @@
                             </div>
                             <div class="input-group mb-3">
                                 <span class="input-group-text" id="user-password">Password</span>
-                                <input type="text" name="password" class="form-control" placeholder="Password" aria-label="Password" aria-describedby="user-password">
+                                <input type="password" name="password" class="form-control" placeholder="Password" aria-label="Password" aria-describedby="user-password">
                             </div>
                             <button class="btn btn-primary btn-block">UPDATE</button>
                         </form>

@@ -51,7 +51,11 @@
                                     <select name="opd" class="form-select select2-single" id="opdProfile" data-placeholder="Pilih...">
                                         <option value="">Pilih...</option>
                                         @foreach ($opds as $opd)
-                                            <option value="{{ $opd->id }}" {{ $opd->kode_opd == $pegawai->opdpeg->kode_opd ? 'selected' : (old('opd') == $opd->id ? 'selected' : '') }}>{{ $opd->kode_opd . ' ' . $opd->nama_opd }}</option>
+                                            @if ($pegawai->opdpeg)
+                                                <option value="{{ $opd->id }}" {{ $opd->kode_opd == $pegawai->opdpeg->kode_opd ? 'selected' : (old('opd') == $opd->id ? 'selected' : '') }}>{{ $opd->kode_opd . ' ' . $opd->nama_opd }}</option>
+                                            @else
+                                                <option value="{{ $opd->id }}">{{ $opd->kode_opd . ' ' . $opd->nama_opd }}</option>
+                                            @endif
                                         @endforeach
                                     </select>
                                 </div>
@@ -60,7 +64,11 @@
                                     <select name="jabatan" class="form-select select2-single" id="jabatanProfile" data-placeholder="Pilih...">
                                         <option value="">Pilih...</option>
                                         @foreach ($jabatans as $jabatan)
-                                            <option value="{{ $jabatan->id }}" {{ $jabatan->nama == $pegawai->opdpeg->jabatan ? 'selected' : (old('jabatan') == $jabatan->id ? 'selected' : '') }}>{{ $jabatan->nama }}</option>
+                                            @if ($pegawai->opdpeg)
+                                                <option value="{{ $jabatan->id }}" {{ $jabatan->nama == $pegawai->opdpeg->jabatan ? 'selected' : (old('jabatan') == $jabatan->id ? 'selected' : '') }}>{{ $jabatan->nama }}</option>
+                                            @else
+                                                <option value="{{ $jabatan->id }}">{{ $jabatan->nama }}</option>
+                                            @endif
                                         @endforeach
                                     </select>
                                 </div>

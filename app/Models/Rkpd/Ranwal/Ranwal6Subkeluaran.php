@@ -2,6 +2,7 @@
 
 namespace App\Models\Rkpd\Ranwal;
 
+use App\Models\Opd;
 use App\Models\OpdPagu;
 use App\Models\PaguRanwalOpd;
 use App\Models\Scopes\TahunScope;
@@ -31,5 +32,15 @@ class Ranwal6Subkeluaran extends Model
     public function subkegiatan(): BelongsTo
     {
         return $this->belongsTo(Ranwal5Subkegiatan::class, 'kode_program', 'kode_program');
+    }
+
+    /**
+     * Get the opd that owns the Ranwal6Subkeluaran
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function opd(): BelongsTo
+    {
+        return $this->belongsTo(Opd::class, 'kode_opd', 'kode_opd');
     }
 }

@@ -20,7 +20,7 @@
                     </div>
                     <div class="table-reponsive">
                         <table class="table table-bordered table-hover table-striped">
-                            <thead class="table-dark align-middle text-center">
+                            <thead class="table-secondary align-middle text-center">
                                 <tr>
                                     <th rowspan="2">Kode OPD</th>
                                     <th rowspan="2">Nama OPD</th>

@@ -12,18 +12,18 @@ class PaguOpdRancanganController extends Controller
 {
     public function paguopd()
     {
+        $opds = Opd::with([
+            'pagurancangans',
+            'pagurancangans.sumberdana',
+        ])->withSum('pagurancangans', 'jumlah')->orderBy('kode_opd')->get();
         return view('anggaran.rancangan.rancangan-paguopd', [
             'apps' => [
                 'title' => 'Pagu OPD',
                 'desc' => 'Rancangan Pagu OPD Tahun ' . tahun(),
             ],
-            'total' => PaguRancanganOpd::sum('jumlah'),
-            'opds' => Opd::with([
-                'pagurancangans',
-                'pagurancangans.sumberdana',
-            ])->withSum('pagurancangans', 'jumlah')->orderBy('kode_opd')->get(),
-            // 'pagutrashes' => OpdPagu::onlyTrashed()->orderBy('kode_opd')->get(),
-            'pagutrashes' => PaguRancanganOpd::onlyTrashed()->orderBy('kode_opd')->get(),
+            'total' => PaguRancanganOpd::whereHas('opd')->sum('jumlah'),
+            'opds' => $opds,
+            'pagutrashes' => PaguRancanganOpd::onlyTrashed()->whereHas('opd')->orderBy('kode_opd')->get(),
         ]);
     }
 }

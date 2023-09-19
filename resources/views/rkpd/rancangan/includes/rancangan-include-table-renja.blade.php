@@ -53,7 +53,7 @@
                                         @endif
                                     </td>
                                     <td class="text-center" style="width: 5%">
-                                        @can('input renja')
+                                        @can('input-renja')
                                             <div class="btn-group" role="group" aria-label="Basic example">
                                                 <a href="/rancangan/rkpd/opd/{{ $opd->id }}/subkegiatan/{{ $subkegiatan->id }}/subkeluaran" type="button" class="btn btn-sm btn-primary"><i class="fa-solid fa-plus-square"></i></a>
                                                 <a href="/rancangan/rkpd/opd/{{ $opd->id }}/subkegiatan/{{ $subkegiatan->id }}/edit" type="button" class="btn btn-sm btn-info"><i class="fa-solid fa-edit"></i></a>

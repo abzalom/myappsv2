@@ -17,10 +17,16 @@ class RanwalRkpdController extends Controller
     {
         $user = User::with('pegawai')->find(auth()->user()->id);
         $opds = [];
+        $jumlah_renja = '';
+        $jumlah_pagu = '';
         if ($user->hasRole(['admin', 'bappeda'])) {
             $opds = Opd::withSum('paguranwals', 'jumlah')->withSum('ranwalsubkeluarans', 'anggaran')->orderBy('kode_opd')->get();
+            $jumlah_renja = Ranwal6Subkeluaran::whereHas('opd')->sum('anggaran');
+            $jumlah_pagu = PaguRanwalOpd::whereHas('opd')->sum('jumlah');
         } else {
             $opds = Opd::withSum('paguranwals', 'jumlah')->withSum('ranwalsubkeluarans', 'anggaran')->orderBy('kode_opd')->where('kode_opd', $user->pegawai->opdpeg->kode_opd)->get();
+            $jumlah_renja = Ranwal6Subkeluaran::where('kode_opd', $user->pegawai->opdpeg->kode_opd)->whereHas('opd')->sum('anggaran');
+            $jumlah_pagu = PaguRanwalOpd::where('kode_opd', $user->pegawai->opdpeg->kode_opd)->whereHas('opd')->sum('jumlah');
         }
         return view('rkpd.ranwal.ranwal-home', [
             'apps' => [
@@ -28,8 +34,8 @@ class RanwalRkpdController extends Controller
                 'desc' => 'Rancangan Awal RKPD Tahun Anggaran ' . session()->get('tahun'),
             ],
             'opds' => $opds,
-            'jumlah_renja' => Ranwal6Subkeluaran::sum('anggaran'),
-            'jumlah_pagu' => PaguRanwalOpd::sum('jumlah'),
+            'jumlah_renja' => $jumlah_renja,
+            'jumlah_pagu' => $jumlah_pagu,
         ]);
     }
 

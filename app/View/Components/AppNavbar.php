@@ -27,7 +27,7 @@ class AppNavbar extends Component
         //     'submenu' => fn ($q) => $q->orderBy('nomor', 'asc'),
         // ])->orderBy('nomor', 'asc')->get();
         // $menus = collect(json_decode(Storage::disk('public')->get('/data/menus.json')));
-        $menus = collect(json_decode(Storage::disk('public')->get('/data/menus_test.json')));
+        $menus = collect(json_decode(Storage::disk('public')->get('/data/menus.json')));
         return view('components.app-navbar', compact('menus'));
     }
 }

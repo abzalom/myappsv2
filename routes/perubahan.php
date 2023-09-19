@@ -59,6 +59,7 @@ Route::middleware(['auth', 'tahun'])->group(function () {
          */
         Route::controller(PaguOpdPerubahanController::class)->group(function () {
             Route::get('/perubahan/pagu', 'paguopd')->name('perubahan.anggaran.pagu');
+            Route::get('/perubahan/pagu/cetak', 'paguopdcetak');
         });
 
         Route::controller(PaguOpdPerubahanStoreController::class)->group(function () {
@@ -72,36 +73,37 @@ Route::middleware(['auth', 'tahun'])->group(function () {
 
     Route::middleware(['role:admin|bappeda|eselon-2a|eselon-2b|eselon-3a|eselon-3b|eselon-4a|eselon-4b|eselon-5a'])->group(function () {
         /**
-         * Perubahan Awal RKPD
+         * Perubahan RKPD
          */
         Route::controller(PerubahanRkpdController::class)->group(function () {
-            Route::get('/perubahan/rkpd', 'Perubahan')->name('perubahan.rkpd');
-            Route::get('/perubahan/rkpd/opd/{id}', 'Perubahanrenja')->name('perubahan.rkpd.renja');
-            Route::get('/perubahan/rkpd/opd/{id}/subkegiatan', 'Perubahanrenjasubkegiatan')->name('perubahan.rkpd.renja.subkegiatan');
-            Route::get('/perubahan/rkpd/opd/{id}/subkegiatan/{idsubkeg}/edit', 'Perubahanrenjasubkegiatanedit')->name('perubahan.rkpd.renja.subkegiatan.edit');
-            Route::get('/perubahan/rkpd/opd/{id}/subkegiatan/{idsubkeg}/subkeluaran', 'Perubahanrenjasubkeluaran')->name('perubahan.rkpd.renja.subkeluaran');
-            Route::get('/perubahan/rkpd/opd/{id}/subkegiatan/{idsubkeg}/subkeluaran/{idsubkel}/edit', 'Perubahanrenjasubkeluaranedit')->name('perubahan.rkpd.renja.subkeluaran.edit');
+            Route::get('/perubahan/rkpd', 'perubahan')->name('perubahan.rkpd');
+            Route::get('/perubahan/rkpd/opd/{id}', 'perubahanrenja')->name('perubahan.rkpd.renja');
+            Route::get('/perubahan/rkpd/opd/{id}/subkegiatan', 'perubahanrenjasubkegiatan')->name('perubahan.rkpd.renja.subkegiatan');
+            Route::get('/perubahan/rkpd/opd/{id}/subkegiatan/{idsubkeg}/edit', 'perubahanrenjasubkegiatanedit')->name('perubahan.rkpd.renja.subkegiatan.edit');
+            Route::get('/perubahan/rkpd/opd/{id}/subkegiatan/{idsubkeg}/subkeluaran', 'perubahanrenjasubkeluaran')->name('perubahan.rkpd.renja.subkeluaran');
+            Route::get('/perubahan/rkpd/opd/{id}/subkegiatan/{idsubkeg}/subkeluaran/{idsubkel}/edit', 'perubahanrenjasubkeluaranedit')->name('perubahan.rkpd.renja.subkeluaran.edit');
+            Route::get('/perubahan/rkpd/cetak', 'perubahancetak')->name('perubahan.rkpd.cetak');
         });
         Route::controller(PerubahanRkpdStoreController::class)->group(function () {
             /**
              * Upload Renja
              */
-            Route::post('/perubahan/rkpd/renja/opd/upload', 'Perubahanrenjaopdupload');
-            Route::post('/perubahan/rkpd/renja/all/upload', 'Perubahanrenjaopdallupload');
+            Route::post('/perubahan/rkpd/renja/opd/upload', 'perubahanrenjaopdupload');
+            Route::post('/perubahan/rkpd/renja/all/upload', 'perubahanrenjaopdallupload');
             /**
              * Route For Sub Kegiatan
              */
-            Route::post('/perubahan/rkpd/opd/{id}/subkegiatan', 'Perubahanrenjasubkegiatanstore');
-            Route::post('/perubahan/rkpd/opd/{id}/subkegiatan/update', 'Perubahanrenjasubkegiatanupdate');
-            Route::post('/perubahan/rkpd/opd/{id}/subkegiatan/destroy', 'Perubahanrenjasubkegiatandestroy');
-            Route::post('/perubahan/rkpd/opd/{id}/subkegiatan/restore', 'Perubahanrenjasubkegiatanrestore');
+            Route::post('/perubahan/rkpd/opd/{id}/subkegiatan', 'perubahanrenjasubkegiatanstore');
+            Route::post('/perubahan/rkpd/opd/{id}/subkegiatan/update', 'perubahanrenjasubkegiatanupdate');
+            Route::post('/perubahan/rkpd/opd/{id}/subkegiatan/destroy', 'perubahanrenjasubkegiatandestroy');
+            Route::post('/perubahan/rkpd/opd/{id}/subkegiatan/restore', 'perubahanrenjasubkegiatanrestore');
             /**
              * Route For Sub Keluaran
              */
-            Route::post('/perubahan/rkpd/opd/{id}/subkegiatan/{idsubkeg}/subkeluaran', 'Perubahanrenjasubkeluaranstore');
-            Route::post('/perubahan/rkpd/opd/{id}/subkegiatan/{idsubkeg}/subkeluaran/{idsubkel}/edit', 'Perubahanrenjasubkeluaranudpate');
-            Route::post('/perubahan/rkpd/opd/{id}/subkegiatan/{idsubkeg}/subkeluaran/{idsubkel}/destroy', 'Perubahanrenjasubkeluarandestroy');
-            Route::post('/perubahan/rkpd/opd/{id}/subkegiatan/{idsubkeg}/subkeluaran/{idsubkel}/restore', 'Perubahanrenjasubkeluaranrestore');
+            Route::post('/perubahan/rkpd/opd/{id}/subkegiatan/{idsubkeg}/subkeluaran', 'perubahanrenjasubkeluaranstore');
+            Route::post('/perubahan/rkpd/opd/{id}/subkegiatan/{idsubkeg}/subkeluaran/{idsubkel}/edit', 'perubahanrenjasubkeluaranudpate');
+            Route::post('/perubahan/rkpd/opd/{id}/subkegiatan/{idsubkeg}/subkeluaran/{idsubkel}/destroy', 'perubahanrenjasubkeluarandestroy');
+            Route::post('/perubahan/rkpd/opd/{id}/subkegiatan/{idsubkeg}/subkeluaran/{idsubkel}/restore', 'perubahanrenjasubkeluaranrestore');
         });
     });
 });

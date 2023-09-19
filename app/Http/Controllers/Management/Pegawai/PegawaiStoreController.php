@@ -23,4 +23,16 @@ class PegawaiStoreController extends Controller
         }
         return back()->with('pesan', 'Data pegawai dengan nip ' . $pegawai->nip . ' berhasil diupdate');
     }
+
+    public function pegawaiasnlock(PegawaiAsnRequest $request)
+    {
+        $pegawai = $request->lockAsnAndUser();
+        return back()->with('pesan', 'Data pegawai dengan nama : ' . $pegawai['nama'] . ' dan nip : ' . $pegawai['nip'] . ' telah dikunci akses');
+    }
+
+    public function pegawaiasnunlock(PegawaiAsnRequest $request)
+    {
+        $pegawai = $request->unlockAsnAndUser();
+        return back()->with('pesan', 'Data pegawai dengan nama : ' . $pegawai['nama'] . ' dan nip : ' . $pegawai['nip'] . ' telah dibuka akses');
+    }
 }

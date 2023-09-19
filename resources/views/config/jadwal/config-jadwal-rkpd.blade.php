@@ -26,7 +26,7 @@
                                     <option value="">Pilih...</option>
                                     <option value="ranwal" {{ $edit ? ($edit->tahapan == 'ranwal' ? 'selected' : '') : (old('tahapan') == 'ranwal' ? 'selected' : '') }}>Ranwal</option>
                                     <option value="rancangan" {{ $edit ? ($edit->tahapan == 'rancangan' ? 'selected' : '') : (old('tahapan') == 'rancangan' ? 'selected' : '') }}>Rancangan</option>
-                                    <option value="penetapan" {{ $edit ? ($edit->tahapan == 'penetapan' ? 'selected' : '') : (old('tahapan') == 'penetapan' ? 'selected' : '') }}>Penetapan</option>
+                                    <option value="perubahan" {{ $edit ? ($edit->tahapan == 'perubahan' ? 'selected' : '') : (old('tahapan') == 'perubahan' ? 'selected' : '') }}>Perubahan</option>
                                 </select>
                                 @error('tahapan')
                                     <small class="text-danger">{{ $message }}</small>

@@ -21,7 +21,10 @@ return new class extends Migration
             $table->string('kode_subrincian');
             $table->string('kode_uraian');
             $table->text('uraian');
+            // semula
             $table->decimal('jumlah', 18, 2);
+            // menjadi
+            $table->decimal('menjadi_jumlah', 18, 2);
             $table->year('tahun');
             $table->softDeletes();
             $table->timestamps();

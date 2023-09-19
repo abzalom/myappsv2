@@ -54,22 +54,22 @@ class PaguOpdRancanganRequest extends FormRequest
     public function sisahsumberdana()
     {
         if ($this->aksi == 'create') {
-            $sumberdana = SumberdanaRancangan::with('pagurancangans')->withSum('pagurancangans', 'jumlah')->find($this->uraian);
+            $sumberdana = SumberdanaRancangan::with('pagus')->withSum('pagus', 'jumlah')->find($this->uraian);
             return $sumberdana;
             $sisah = [
                 'uraian' => $sumberdana->uraian,
-                'jumlah' => $sumberdana->jumlah - $sumberdana->pagurancangans_sum_jumlah,
+                'jumlah' => $sumberdana->jumlah - $sumberdana->pagus_sum_jumlah,
             ];
             return $sisah;
         }
         if ($this->aksi == 'update') {
             $pagu = PaguRancanganOpd::find($this->idpagu);
             $sumberdana = SumberdanaRancangan::withSum([
-                'pagurancangans' => fn ($q) => $q->whereNot('id', $pagu->id)
+                'pagus' => fn ($q) => $q->whereNot('id', $pagu->id)
             ], 'jumlah')->find($this->idsumberdana);
             $sisah = [
                 'uraian' => $sumberdana->uraian,
-                'jumlah' => $sumberdana->jumlah - $sumberdana->pagurancangans_sum_jumlah,
+                'jumlah' => $sumberdana->jumlah - $sumberdana->pagus_sum_jumlah,
             ];
             return $sisah;
         }

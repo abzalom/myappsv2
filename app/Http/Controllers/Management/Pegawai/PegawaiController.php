@@ -16,7 +16,11 @@ class PegawaiController extends Controller
      */
     public function pegawaiasn()
     {
-        $pegawais = Pegawai::get();
+        $pegawais = Pegawai::with([
+            'user' => fn ($q) => $q->withTrashed()
+        ])
+            ->withTrashed()
+            ->get();
         return view('management.pegawai.asn.pegawai-asn', [
             'apps' => [
                 'title' => 'Pegawai ASN',
@@ -43,6 +47,7 @@ class PegawaiController extends Controller
         if (!$pegawai) {
             return redirect()->to('/management/pegawai/asn')->with('pesan', 'Data pegawai tidak ditemukan');
         }
+        // return $pegawai->opdpeg;
         return view('management.pegawai.asn.pegawai-asn-profile', [
             'apps' => [
                 'title' => 'Pegawai ASN',

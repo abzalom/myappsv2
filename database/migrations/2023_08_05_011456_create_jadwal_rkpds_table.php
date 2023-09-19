@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('jadwal_rkpds', function (Blueprint $table) {
             $table->id();
-            $table->enum('tahapan', ['ranwal', 'rancangan', 'penetapan']);
+            $table->enum('tahapan', ['ranwal', 'rancangan', 'perubahan']);
             $table->text('keterangan')->nullable();
             $table->timestamp('mulai');
             $table->timestamp('selesai');

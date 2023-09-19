@@ -61,6 +61,7 @@
                     </div>
                     <div class="col-sm-12 mt-3">
                         <button type="submit" class="btn btn-primary">Simpan</button>
+                        <a href="{{ route('opd') }}" class="btn btn-secondary">Kembali</a>
                     </div>
                 </div>
             </form>

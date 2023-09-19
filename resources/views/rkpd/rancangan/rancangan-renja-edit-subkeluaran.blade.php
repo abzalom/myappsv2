@@ -2,8 +2,8 @@
 
     <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
         <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="/ranwal/rkpd">OPD</a></li>
-            <li class="breadcrumb-item"><a href="/ranwal/rkpd/opd/{{ $opd->id }}">Renja</a></li>
+            <li class="breadcrumb-item"><a href="/rancangan/rkpd">OPD</a></li>
+            <li class="breadcrumb-item"><a href="/rancangan/rkpd/opd/{{ $opd->id }}">Renja</a></li>
             <li class="breadcrumb-item active" aria-current="page">Edit Sub Keluaran : {{ $subkeluaran->uraian }}</li>
         </ol>
     </nav>
@@ -98,7 +98,7 @@
 
                         <div class="row mt-4">
                             <button type="submit" class="btn btn-primary col-5 mx-auto">Simpan</button>
-                            <a href="/ranwal/rkpd/opd/{{ $opd->id }}" class="btn btn-secondary col-5 mx-auto">Batal</a>
+                            <a href="/rancangan/rkpd/opd/{{ $opd->id }}" class="btn btn-secondary col-5 mx-auto">Batal</a>
                         </div>
                     </div>
                 </form>

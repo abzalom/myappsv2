@@ -76,13 +76,15 @@
                                                 @endforeach
                                             </td>
                                             <td>
-                                                <div class="btn-group" role="group" aria-label="Basic example">
-                                                    <a href="?edit={{ $role->name }}" class="btn btn-sm btn-primary"><i class="fa-solid fa-edit"></i></a>
-                                                    <form action="/setting/roles/destory" method="post">
-                                                        @csrf
-                                                        <input type="hidden" name="role" value="{{ $role->name }}">
-                                                        <button type="submit" class="btn btn-sm btn-danger"><i class="fa-solid fa-trash"></i></button>
-                                                    </form>
+                                                <div class="container">
+                                                    <div class="btn-group" role="group" aria-label="Basic example">
+                                                        <a href="?edit={{ $role->name }}" class="btn btn-sm btn-primary"><i class="fa-solid fa-edit"></i></a>
+                                                        <form class="inline" action="/setting/roles/destory" method="post">
+                                                            @csrf
+                                                            <input type="hidden" name="role" value="{{ $role->name }}">
+                                                            <button type="submit" class="btn btn-sm btn-danger btn-group-form-last"><i class="fa-solid fa-trash"></i></button>
+                                                        </form>
+                                                    </div>
                                                 </div>
                                             </td>
                                         </tr>

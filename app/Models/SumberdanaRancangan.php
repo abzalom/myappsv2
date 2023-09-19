@@ -31,7 +31,7 @@ class SumberdanaRancangan extends Model
         return $this->belongsTo(SumberDana::class, 'kode_sumberdana', 'kode');
     }
 
-    public function pagurancangans(): HasMany
+    public function pagus(): HasMany
     {
         return $this->hasMany(PaguRancanganOpd::class, 'kode_unik_sumberdana', 'kode_unik');
     }

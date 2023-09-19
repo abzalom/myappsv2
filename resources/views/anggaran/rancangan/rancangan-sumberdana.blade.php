@@ -48,7 +48,7 @@
                                 @php
                                     $no = 1;
                                 @endphp
-                                @foreach ($sumberdana->rancangans as $ranwal)
+                                @foreach ($sumberdana->rancangans as $rancangan)
                                     <tr>
                                         <td>
                                             <div class="row">
@@ -62,16 +62,16 @@
                                                 </div>
                                             </div>
                                         </td>
-                                        <td>{{ $ranwal->kode_unik }}</td>
-                                        <td style="width: 70%">{{ $ranwal->uraian }}</td>
-                                        <td style="width: 20%; text-align: right">{{ number_format($ranwal->jumlah, 2, ',', '.') }}</td>
+                                        <td>{{ $rancangan->kode_unik }}</td>
+                                        <td style="width: 70%">{{ $rancangan->uraian }}</td>
+                                        <td style="width: 20%; text-align: right">{{ number_format($rancangan->jumlah, 2, ',', '.') }}</td>
                                         <td style="width: 10%; text-align: center">
                                             <div class="btn-group" role="group">
-                                                <a href="/rancangan/sumberdana/form?edit={{ $ranwal->id }}" class="btn btn-sm btn-info"><i class="fa-solid fa-edit"></i></a>
-                                                @if ($ranwal->pagurancangans->count() == 0)
+                                                <a href="/rancangan/sumberdana/form?edit={{ $rancangan->id }}" class="btn btn-sm btn-info"><i class="fa-solid fa-edit"></i></a>
+                                                @if ($rancangan->pagus->count() == 0)
                                                     <form action="/rancangan/sumberdana/destroy" method="post">
                                                         @csrf
-                                                        <input type="hidden" name="id" value="{{ $ranwal->id }}">
+                                                        <input type="hidden" name="id" value="{{ $rancangan->id }}">
                                                         <button type="submit" class="btn btn-sm btn-danger"><i class="fa-solid fa-trash"></i></button>
                                                     </form>
                                                 @endif

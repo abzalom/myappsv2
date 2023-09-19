@@ -16,7 +16,10 @@ return new class extends Migration
             $table->string('kode_opd');
             $table->string('kode_sumberdana');
             $table->string('kode_unik_sumberdana');
-            $table->decimal('jumlah', 16, 2);
+            // semula
+            $table->decimal('jumlah', 16, 2)->nullable();
+            // menjadi
+            $table->decimal('menjadi_jumlah', 16, 2)->nullable();
             $table->year('tahun');
             $table->softDeletes();
             $table->timestamps();

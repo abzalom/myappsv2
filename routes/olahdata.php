@@ -14,5 +14,6 @@ use Illuminate\Support\Facades\Route;
 
 
 Route::middleware('auth')->group(function () {
-    Route::get('/test', [TestController::class, 'test']);
+    Route::get('/test', [TestController::class, 'testuser']);
+    Route::get('/rollback/perubahan', [TestController::class, 'RollbackPerubahan']);
 });

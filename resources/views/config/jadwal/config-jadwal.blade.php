@@ -88,7 +88,7 @@
                                         <div class="btn-group" role="group" aria-label="Basic example">
                                             @if (!$rkpd->deleted_at)
                                                 @if ($rkpd->tahapan !== 'ranwal')
-                                                    <form action="/config/jadwal/rkpd/synchorn" method="post">
+                                                    <form action="/config/jadwal/rkpd/synchorn/{{ $rkpd->tahapan }}" method="post">
                                                         @csrf
                                                         <input type="hidden" name="tahapan" value="{{ $rkpd->tahapan }}">
                                                         <button class="btn btn-sm btn-secondary"><i class="fa-solid fa-arrows-rotate"></i></button>

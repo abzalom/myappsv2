@@ -36,6 +36,8 @@ Route::middleware(['auth'])->group(function () {
              */
             Route::post('/management/pegawai/asn/create', 'pegawaiasnstore');
             Route::post('/management/pegawai/asn/{pegawai}/profile', 'pegawaiasnudpate');
+            Route::post('/management/pegawai/asn/lock', 'pegawaiasnlock');
+            Route::post('/management/pegawai/asn/unlock', 'pegawaiasnunlock');
         });
 
 

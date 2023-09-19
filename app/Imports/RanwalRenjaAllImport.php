@@ -13,16 +13,21 @@ use App\Models\Rkpd\Ranwal\Ranwal4Kegiatan;
 use Maatwebsite\Excel\Concerns\ToCollection;
 use App\Models\Rkpd\Ranwal\Ranwal5Subkegiatan;
 use App\Models\Rkpd\Ranwal\Ranwal6Subkeluaran;
+use Maatwebsite\Excel\Concerns\RemembersRowNumber;
+use Maatwebsite\Excel\Concerns\WithChunkReading;
 use Maatwebsite\Excel\Concerns\WithHeadingRow;
 
-class RanwalRenjaAllImport implements ToModel, WithHeadingRow
+class RanwalRenjaAllImport implements ToModel, WithHeadingRow, WithChunkReading
 {
+
     public function model($row)
     {
-        // if (!array_key_exists('capaian', $row)) {
-        //     dump($row);
-        // }
-        $datasub = A5Subkegiatan::where('kode_subkegiatan', $row['kode_subkegiatan'])->first();
+        $datasub = A5Subkegiatan::with([
+            'kegiatan',
+            'kegiatan.program',
+            'kegiatan.program.bidang',
+            'kegiatan.program.bidang.urusan',
+        ])->where('kode_subkegiatan', $row['kode_subkegiatan'])->first();
         if ($datasub) {
             $urusan = [
                 'kode_opd' => $row['kode_opd'],
@@ -126,5 +131,10 @@ class RanwalRenjaAllImport implements ToModel, WithHeadingRow
                 DB::rollBack();
             }
         }
+    }
+
+    public function chunkSize(): int
+    {
+        return 200;
     }
 }

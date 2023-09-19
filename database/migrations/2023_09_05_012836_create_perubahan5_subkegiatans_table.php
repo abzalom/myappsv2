@@ -19,17 +19,28 @@ return new class extends Migration
             $table->string('kode_program');
             $table->string('kode_kegiatan');
             $table->string('kode_subkegiatan');
-            $table->text('uraian');
+            $table->text('uraian')->nullable();
+
             $table->text('kinerja')->nullable();
+            $table->text('indikator')->nullable();
+            $table->string('satuan')->nullable();
+
+            // semula
             $table->float('target_kinerja', 8, 2)->nullable();
             $table->string('satuan_kinerja')->nullable();
-            $table->text('indikator')->nullable();
             $table->float('target_indikator', 8, 2)->nullable();
-            $table->string('satuan')->nullable();
             $table->date('mulai')->nullable();
             $table->date('selesai')->nullable();
-            $table->string('klasifikasi_belanja')->nullable();
             $table->enum('jenis', ['fisik', 'non fisik'])->nullable();
+            // menjadi
+            $table->float('menjadi_target_kinerja', 8, 2)->nullable();
+            $table->string('menjadi_satuan_kinerja')->nullable();
+            $table->float('menjadi_target_indikator', 8, 2)->nullable();
+            $table->date('menjadi_mulai')->nullable();
+            $table->date('menjadi_selesai')->nullable();
+            $table->enum('menjadi_jenis', ['fisik', 'non fisik'])->nullable();
+
+            $table->string('klasifikasi_belanja')->nullable();
             $table->year('tahun');
             $table->softDeletes();
             $table->timestamps();

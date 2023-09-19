@@ -54,22 +54,22 @@ class PaguOpdRanwalRequest extends FormRequest
     public function sisahsumberdana()
     {
         if ($this->aksi == 'create') {
-            $sumberdana = SumberdanaRanwal::with('paguranwals')->withSum('paguranwals', 'jumlah')->find($this->uraian);
+            $sumberdana = SumberdanaRanwal::with('pagus')->withSum('pagus', 'jumlah')->find($this->uraian);
             return $sumberdana;
             $sisah = [
                 'uraian' => $sumberdana->uraian,
-                'jumlah' => $sumberdana->jumlah - $sumberdana->paguranwals_sum_jumlah,
+                'jumlah' => $sumberdana->jumlah - $sumberdana->pagus_sum_jumlah,
             ];
             return $sisah;
         }
         if ($this->aksi == 'update') {
             $pagu = PaguRanwalOpd::find($this->idpagu);
             $sumberdana = SumberdanaRanwal::withSum([
-                'paguranwals' => fn ($q) => $q->whereNot('id', $pagu->id)
+                'pagus' => fn ($q) => $q->whereNot('id', $pagu->id)
             ], 'jumlah')->find($this->idsumberdana);
             $sisah = [
                 'uraian' => $sumberdana->uraian,
-                'jumlah' => $sumberdana->jumlah - $sumberdana->paguranwals_sum_jumlah,
+                'jumlah' => $sumberdana->jumlah - $sumberdana->pagus_sum_jumlah,
             ];
             return $sisah;
         }
